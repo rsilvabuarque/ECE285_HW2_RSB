@@ -1,0 +1,96 @@
+{
+  "selection": {
+    "frozen_utc": "2026-11-12T08:27:26.079108+00:00",
+    "selected_run": "baseline64",
+    "selected_epoch": 95,
+    "checkpoint_sha256": "7c823d5b3851d58c5cf889ab1964e2546a9acb27b8029868cfb793c0e67846c1",
+    "checkpoint": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/final/best.pt",
+    "source_checkpoint": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/baseline64/best.pt",
+    "selection_rule": "Global minimum fixed validation probability-feature FID across both arms; exact ties baseline rate then earlier epoch.",
+    "validation_samples": 1024,
+    "validation_prior_seed": 43,
+    "validation_reference_selection_seed": 100043,
+    "matched_restart_boundaries": [
+      2,
+      50,
+      100
+    ],
+    "controlled_configuration_keys": [
+      "latent_dim",
+      "base_channels",
+      "batch_size",
+      "beta1",
+      "seed",
+      "num_workers",
+      "eval_every",
+      "val_samples",
+      "device",
+      "epochs"
+    ],
+    "arms": [
+      {
+        "run": "baseline64",
+        "priority": 0,
+        "learning_rate": 0.0002,
+        "completed_epochs": 100,
+        "best_epoch": 95,
+        "validation_probability_fid": 0.06910661290609121,
+        "validation_inception_score": 4.53024761977543,
+        "checkpoint_sha256": "7c823d5b3851d58c5cf889ab1964e2546a9acb27b8029868cfb793c0e67846c1",
+        "history_sha256": "b52626847b3d3805a967138849d78cd68cfeb8704cb0887062cf75748a866d62",
+        "config_sha256": "1934f074c658fedd4f1809d6896932bbfc4be6626d1351b1379ac7ddbd1b3d2b",
+        "training_seconds": 632.964853888021,
+        "validation_seconds": 187.04274107598758,
+        "update_pairs": 50900,
+        "validation_opportunities": 21
+      },
+      {
+        "run": "lowerlr64",
+        "priority": 1,
+        "learning_rate": 0.0001,
+        "completed_epochs": 100,
+        "best_epoch": 100,
+        "validation_probability_fid": 0.07445264363270787,
+        "validation_inception_score": 4.6661754450694835,
+        "checkpoint_sha256": "473394714983533fb04c3fbdef6895420926051ff20e8aff322d9972e55f58e4",
+        "history_sha256": "558c729bfef3a0d49d93d1ca5a4ed5d0a79634f95b9c256b5e4ae47c64d8d061",
+        "config_sha256": "0b5bb69f9631680edd92313eb8aecc1fd568fabf4b9a3c8c7ffb14603280e782",
+        "training_seconds": 631.3662424900103,
+        "validation_seconds": 155.88130320500204,
+        "update_pairs": 50900,
+        "validation_opportunities": 21
+      }
+    ],
+    "final_test_predeclared": {
+      "split": "test",
+      "real_and_generated_count": 4096,
+      "prior_seed": 144,
+      "reference_selection_seed": 100144
+    },
+    "test_metrics_computed_or_inspected_before_freeze": false,
+    "final_seed_revision": {
+      "original_prior_seed": 44,
+      "revised_prior_seed": 144,
+      "original_reference_seed": 100044,
+      "revised_reference_seed": 100144,
+      "reason": "Separate final prior stream from training prior seed44 for CPU-portable reproduction; current CUDA-training/CPU-evaluation duplicates were not observed.",
+      "timing": "Recorded in RECOVERY_HANDOFF.md before any final test evaluation."
+    },
+    "interpretation": "One-seed descriptive comparison under fixed finite validation; not a population/perceptual optimum."
+  },
+  "generation": {
+    "checkpoint": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/final/best.pt",
+    "checkpoint_sha256": "7c823d5b3851d58c5cf889ab1964e2546a9acb27b8029868cfb793c0e67846c1",
+    "checkpoint_epoch": 95,
+    "prior_seed": 45,
+    "num_samples": 64,
+    "method": "Independent standard-normal latent draws; generator only; no input painting.",
+    "display": "Fixed [-1,1] to [0,255] rounding; no per-image normalization.",
+    "latent_dim": 100,
+    "batch_size": 64,
+    "device": "cuda"
+  },
+  "history_epochs": 100,
+  "comparison_history_epochs": 100,
+  "tiles": "first eight saved PNGs, four columns, two-pixel black border; no pixel rescaling"
+}

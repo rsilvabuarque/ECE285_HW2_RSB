@@ -1,0 +1,59 @@
+{
+  "utc": "20261112T081233604379Z",
+  "argv": [
+    "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/worktree/hw2_gan/train.py",
+    "--cache-dir",
+    "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/cache/rgb64",
+    "--output-dir",
+    "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/lowerlr64",
+    "--learning-rate",
+    "0.0001",
+    "--epochs",
+    "50",
+    "--resume",
+    "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/lowerlr64/last.pt"
+  ],
+  "config": {
+    "cache_dir": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/cache/rgb64",
+    "output_dir": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/lowerlr64",
+    "epochs": 50,
+    "latent_dim": 100,
+    "base_channels": 64,
+    "batch_size": 128,
+    "learning_rate": 0.0001,
+    "beta1": 0.5,
+    "seed": 42,
+    "num_workers": 4,
+    "eval_every": 5,
+    "val_samples": 1024,
+    "device": "cuda",
+    "resume": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/lowerlr64/last.pt"
+  },
+  "source_sha256": {
+    "model.py": "9feafc4cc72bb42889a09fed1d0025cdf8085b9caa0b48c4934aae6458917b78",
+    "data.py": "a9887d1c4327b17c019ce9c0581300cb7c9af3a08d43712d6b40e23c0680bda1",
+    "report_figures.py": "849c501e1c4442312f73e53c3d6bafd5013f8bf55477e68c98eaac1faf518798",
+    "__init__.py": "ccbbb74b627490174dedd6787d0a9819c195185401023868313855056736636c",
+    "utils.py": "af1c7ddd3ecc7cfb7be90aaa60fa7d6479af99a09b61cfb9f3b63d1bfea5a816",
+    "checks.py": "0791898779fb9c45943663e7ffae669534c51b5d3af7e54a89a925d6f752775e",
+    "evaluate.py": "f819dc13b3fa1c97e4c1f71892ee85da12df5ba74bd0de13f8a9bdb362add697",
+    "train.py": "b311be9fe7f8ffeaa9d8e30c9b7444166bc2bcd864d46bda28e1dfb30a6ddeb0",
+    "generate.py": "ed4810fbd0ceaef951651e1b658a0bd290b363ea3a47448130735d4029702f24"
+  },
+  "versions": {
+    "torch": "2.13.0+cu130",
+    "torchvision": "0.28.0+cu130",
+    "numpy": "2.4.4",
+    "Pillow": "12.3.0",
+    "matplotlib": "3.11.1",
+    "pytorch-ignite": "0.5.5",
+    "scipy": "1.18.0"
+  },
+  "host": "nid200284",
+  "allocation": {
+    "SLURM_JOB_ID": "61161119",
+    "SLURM_JOB_ACCOUNT": "m5397_g",
+    "SLURM_JOB_QOS": "gpu_shared_interactive",
+    "CUDA_VISIBLE_DEVICES": "0"
+  }
+}

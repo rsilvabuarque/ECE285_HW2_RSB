@@ -1,0 +1,41 @@
+{
+  "kind": "Real training crops, not generated",
+  "global_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    14,
+    15,
+    18,
+    21
+  ],
+  "files": [
+    "Abstract_Expressionism/aaron-siskind_acolman-1-1955.jpg",
+    "Abstract_Expressionism/aaron-siskind_chicago-1951.jpg",
+    "Abstract_Expressionism/aaron-siskind_chicago-6-1961.jpg",
+    "Abstract_Expressionism/aaron-siskind_feet-102-1957.jpg",
+    "Abstract_Expressionism/aaron-siskind_gloucester-16a-1944.jpg",
+    "Abstract_Expressionism/aaron-siskind_jerome-arizona-1949.jpg",
+    "Abstract_Expressionism/aaron-siskind_kentucky-4-1951.jpg",
+    "Abstract_Expressionism/aaron-siskind_new-york-1951.jpg",
+    "Abstract_Expressionism/aaron-siskind_new-york-2-1948.jpg",
+    "Abstract_Expressionism/aaron-siskind_new-york-40-1986.jpg",
+    "Abstract_Expressionism/aaron-siskind_new-york-city-w-1-1947.jpg",
+    "Abstract_Expressionism/aaron-siskind_per-400-1983.jpg",
+    "Abstract_Expressionism/aaron-siskind_providence-92-1986.jpg",
+    "Abstract_Expressionism/aaron-siskind_recife-olinda-8-1968.jpg",
+    "Abstract_Expressionism/aaron-siskind_uruapan-11-1955.jpg",
+    "Abstract_Expressionism/aaron-siskind_westport-10-1988.jpg"
+  ],
+  "cache_fingerprint": "eccee01a8bd3076fa5ae3d0acffc14b23888e4ecfe50da938b7a38fb9d299fe9",
+  "display": "Fixed [-1,1] to [0,255] mapping"
+}

@@ -1,0 +1,16 @@
+{
+  "cache_dir": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/cache/rgb64",
+  "output_dir": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/lowerlr64",
+  "epochs": 100,
+  "latent_dim": 100,
+  "base_channels": 64,
+  "batch_size": 128,
+  "learning_rate": 0.0001,
+  "beta1": 0.5,
+  "seed": 42,
+  "num_workers": 4,
+  "eval_every": 5,
+  "val_samples": 1024,
+  "device": "cuda",
+  "resume": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_gan/lowerlr64/last.pt"
+}

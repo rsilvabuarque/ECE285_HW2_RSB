@@ -1,0 +1,13 @@
+{
+  "checkpoint_sha256": "7c823d5b3851d58c5cf889ab1964e2546a9acb27b8029868cfb793c0e67846c1",
+  "selected_epoch": 95,
+  "completed_epochs_both_arms": 100,
+  "hostname": "nid200284",
+  "allocation": {
+    "SLURM_JOB_ID": "61161695",
+    "SLURM_JOB_ACCOUNT": "m5397_g",
+    "SLURM_JOB_QOS": "gpu_shared_interactive"
+  },
+  "torch_version": "2.13.0+cu130",
+  "cuda_version": "13.0"
+}
