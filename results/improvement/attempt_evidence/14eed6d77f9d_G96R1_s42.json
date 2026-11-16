@@ -1,0 +1,14 @@
+{
+  "id": "G96R1_s42",
+  "task_config_sha256": "956d52b10bc6324b0fd5fcc8e2a83b3a2581f4724bc085a527ca3382388117c7",
+  "started_utc": "2026-11-16T05:36:46.561957+00:00",
+  "status": "completed",
+  "pilot_epochs": [
+    1,
+    2
+  ],
+  "pilot_training_seconds": 26.447365503991023,
+  "pilot_elapsed_seconds": 44.10294420202263,
+  "finished_utc": "2026-11-16T06:22:48.689578+00:00",
+  "elapsed_seconds": 2762.127622723987
+}

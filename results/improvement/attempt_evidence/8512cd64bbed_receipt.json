@@ -1,0 +1,59 @@
+{
+  "started_utc": "2026-11-16T05:03:44.976305+00:00",
+  "job_id": "61385907",
+  "status": "completed",
+  "steps": [
+    {
+      "step": "campaign.tests.test_campaign",
+      "elapsed_seconds": 10.751406418974511
+    },
+    {
+      "step": "campaign.tests.test_diffaugment",
+      "elapsed_seconds": 15.939315583964344
+    },
+    {
+      "step": "campaign.tests.test_model128",
+      "elapsed_seconds": 18.636784552014433
+    },
+    {
+      "step": "campaign.tests.test_data128",
+      "elapsed_seconds": 21.321541560988408
+    },
+    {
+      "step": "campaign.tests.test_optional_gpu",
+      "elapsed_seconds": 32.00919094198616
+    },
+    {
+      "step": "all_optional_checks_passed",
+      "elapsed_seconds": 32.01138554495992
+    },
+    {
+      "step": "hw2_gan.data128",
+      "elapsed_seconds": 343.7963450959651
+    },
+    {
+      "step": "native128_validation_only_plan_and_features_frozen",
+      "elapsed_seconds": 364.6374330819817,
+      "plan_sha256": "dca7def1234c1cd713bfda2210aeaf2eb3eceef11d3c1bc638da39e44c29e2c8",
+      "pixel_sha256": "d0a7bb22df7c1dd30094efd8d1a794ff2e7c67e78741dc9b47d095a08d7d5836"
+    },
+    {
+      "step": "native128_width32_design_frozen",
+      "elapsed_seconds": 364.6412580810138
+    },
+    {
+      "step": "hw2_gan.campaign_train",
+      "elapsed_seconds": 413.9593928940012
+    },
+    {
+      "step": "hw2_gan.campaign_train",
+      "elapsed_seconds": 1932.7403099130024
+    },
+    {
+      "step": "native128_demonstration_completed",
+      "elapsed_seconds": 1932.742982316995
+    }
+  ],
+  "elapsed_seconds": 1932.744690218009,
+  "finished_utc": "2026-11-16T05:35:57.720993+00:00"
+}

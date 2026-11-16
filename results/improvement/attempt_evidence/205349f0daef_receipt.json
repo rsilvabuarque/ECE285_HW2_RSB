@@ -1,0 +1,458 @@
+{
+  "started_utc": "2026-11-16T04:38:18.693953+00:00",
+  "host": "nid200256",
+  "status": "completed",
+  "steps": [
+    {
+      "step": "passed_campaign.tests.test_model",
+      "elapsed_seconds": 5.128240028978325
+    },
+    {
+      "step": "passed_campaign.tests.test_evaluate_protocols",
+      "elapsed_seconds": 10.512353926955257
+    },
+    {
+      "step": "passed_campaign.tests.test_campaign",
+      "elapsed_seconds": 17.297748626966495
+    },
+    {
+      "step": "pixel_cache_copied_and_hashed",
+      "elapsed_seconds": 20.074648442969192,
+      "sha256": "6de2dae80373ca422d7d9773ce50f3da260b5cc1c913ff8d3ad9685b73305ff9",
+      "bytes": 1000784000
+    },
+    {
+      "step": "inception_weights_verified",
+      "elapsed_seconds": 20.72749501594808,
+      "sha256": "0cc3c7bd75056d25e46cba549dc184522069b81e9787eff6df84f397bd52a5ef"
+    },
+    {
+      "step": "references_and_priors_frozen",
+      "elapsed_seconds": 21.245002640003804,
+      "plan_sha256": "7af9a9f872e7b4f1cca8c20ea1be9b666aecf54dd7e4e0e3c4885f239ce1a76e",
+      "counts": {
+        "validation_legacy1024": 1024,
+        "validation_pool4000_a": 4000,
+        "validation_pool4000_b": 4000,
+        "final_test4000": 4000,
+        "historical_test4096": 4096
+      }
+    },
+    {
+      "step": "original_full_checkpoint_verified",
+      "elapsed_seconds": 21.692344498995226,
+      "epoch": 100,
+      "history_epochs": 100,
+      "sha256": "807e4c5c60863603e9a354fea3554cf7f8a71bef03e1e66ffc314a5fecb40f8f"
+    },
+    {
+      "step": "gpu_adversarial_step",
+      "elapsed_seconds": 24.83117543696426,
+      "g_width": 64,
+      "d_options": {},
+      "r1_gamma": 0.0,
+      "metrics": {
+        "d_loss": 1.9020237922668457,
+        "d_real_loss": 1.0257816314697266,
+        "d_fake_loss": 0.8762421607971191,
+        "d_real_probability": 0.45085394382476807,
+        "d_fake_probability": 0.5678207874298096,
+        "d_updated": 1,
+        "r1_applied": 0,
+        "r1_penalty": 0.0,
+        "r1_loss": 0.0,
+        "g_loss": 12.689743041992188,
+        "g_gradient_norm": 178.51368713378906,
+        "d_fake_after_d_probability": 4.888459443463944e-05
+      }
+    },
+    {
+      "step": "gpu_adversarial_step",
+      "elapsed_seconds": 24.94466969795758,
+      "g_width": 96,
+      "d_options": {},
+      "r1_gamma": 0.0,
+      "metrics": {
+        "d_loss": 1.5500402450561523,
+        "d_real_loss": 0.36507269740104675,
+        "d_fake_loss": 1.1849675178527832,
+        "d_real_probability": 0.6942576169967651,
+        "d_fake_probability": 0.6942098140716553,
+        "d_updated": 1,
+        "r1_applied": 0,
+        "r1_penalty": 0.0,
+        "r1_loss": 0.0,
+        "g_loss": 16.611299514770508,
+        "g_gradient_norm": 176.77532958984375,
+        "d_fake_after_d_probability": 1.1974574931628013e-07
+      }
+    },
+    {
+      "step": "gpu_adversarial_step",
+      "elapsed_seconds": 25.11350880097598,
+      "g_width": 64,
+      "d_options": {
+        "batch_norm": false
+      },
+      "r1_gamma": 1.0,
+      "metrics": {
+        "d_loss": 1.3936207294464111,
+        "d_real_loss": 0.70233553647995,
+        "d_fake_loss": 0.6904000043869019,
+        "d_real_probability": 0.495436429977417,
+        "d_fake_probability": 0.4986244738101959,
+        "d_updated": 1,
+        "r1_applied": 1,
+        "r1_penalty": 0.0017704919446259737,
+        "r1_loss": 0.0008852459723129869,
+        "g_loss": 0.6918430328369141,
+        "g_gradient_norm": 0.42915481328964233,
+        "d_fake_after_d_probability": 0.5006524920463562
+      }
+    },
+    {
+      "step": "gpu_adversarial_step",
+      "elapsed_seconds": 25.284851846983656,
+      "g_width": 64,
+      "d_options": {
+        "spectral_norm": true
+      },
+      "r1_gamma": 0.0,
+      "metrics": {
+        "d_loss": 1.406671166419983,
+        "d_real_loss": 0.7183771133422852,
+        "d_fake_loss": 0.6882940530776978,
+        "d_real_probability": 0.4876144230365753,
+        "d_fake_probability": 0.49756741523742676,
+        "d_updated": 1,
+        "r1_applied": 0,
+        "r1_penalty": 0.0,
+        "r1_loss": 0.0,
+        "g_loss": 0.6801446080207825,
+        "g_gradient_norm": 0.6307662725448608,
+        "d_fake_after_d_probability": 0.506543755531311
+      }
+    },
+    {
+      "step": "validation_caches_precomputed",
+      "elapsed_seconds": 44.625235780957155,
+      "caches": [
+        {
+          "reference": "validation_legacy1024",
+          "protocol_id": "legacy1000prob-v1",
+          "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1/legacy1000prob-v1/1ad03c7ba541b50370960f332dd61e716ccb1d685a807618e6ceb98c1104bc94.npz",
+          "cache_hit": false,
+          "pixel_loading_method": "numpy-mmap-readonly"
+        },
+        {
+          "reference": "validation_pool4000_a",
+          "protocol_id": "legacy1000prob-v1",
+          "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1/legacy1000prob-v1/456d727409d3bf857ca7ca07ba7878e271ff2820ac8094af0727cefc407693d0.npz",
+          "cache_hit": false,
+          "pixel_loading_method": "numpy-mmap-readonly"
+        },
+        {
+          "reference": "validation_pool4000_a",
+          "protocol_id": "torchvision2048pool-v1",
+          "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1/torchvision2048pool-v1/0381d6056043bc454149e3777a2921ff24937e54d95c3e62f388d96937b2489a.npz",
+          "cache_hit": false,
+          "pixel_loading_method": "numpy-mmap-readonly"
+        },
+        {
+          "reference": "validation_pool4000_b",
+          "protocol_id": "legacy1000prob-v1",
+          "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1/legacy1000prob-v1/ca8972da445cc67938511ebe855abcf1ff9d0e7b998e1f97c6d55a5901ba5242.npz",
+          "cache_hit": false,
+          "pixel_loading_method": "numpy-mmap-readonly"
+        },
+        {
+          "reference": "validation_pool4000_b",
+          "protocol_id": "torchvision2048pool-v1",
+          "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1/torchvision2048pool-v1/d5f7b9c61e716b1d1e14f6537269ba329feb34ab0d66ac6e94cf426d726bef55.npz",
+          "cache_hit": false,
+          "pixel_loading_method": "numpy-mmap-readonly"
+        }
+      ]
+    },
+    {
+      "step": "passed_campaign.tests.test_evaluation_gpu",
+      "elapsed_seconds": 96.24008569295984
+    },
+    {
+      "step": "real_vs_real_control",
+      "elapsed_seconds": 101.4182619319763,
+      "metrics": {
+        "legacy1000prob-v1": {
+          "fid": 0.018551935499383165,
+          "fid_raw_before_roundoff_clamp": 0.018551935499383165,
+          "inception_score": 7.394922522771666,
+          "real_inception_score_reference": 7.485415207555408,
+          "protocol_hash": "56b35821081a7fe468ec711bbf4dcb3bdb97996f93af799d88a38d0682d7ad36",
+          "protocol": {
+            "protocol_id": "legacy1000prob-v1",
+            "features": "1000 ImageNet class probabilities",
+            "weights": "torchvision Inception_V3_Weights.IMAGENET1K_V1",
+            "weights_url": "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth",
+            "input": "RGB [-1,1] mapped to [0,1]",
+            "resize": "299x299 bilinear, align_corners=False, antialias=True",
+            "normalization_mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "normalization_std": [
+              0.229,
+              0.224,
+              0.225
+            ],
+            "transform_input": true,
+            "effective_first_conv_input": "2 * resized_RGB_[0,1] - 1",
+            "inception_score": "aggregate over all generated softmax rows; no split averaging",
+            "feature_device_type": "cuda",
+            "precision": "float32; autocast disabled",
+            "runtime_numeric_settings": {
+              "cuda_matmul_allow_tf32": false,
+              "cudnn_allow_tf32": true,
+              "cudnn_benchmark": false,
+              "cudnn_deterministic": true
+            },
+            "torchvision_inception_source_sha256": "6791db7e2ee8b7a29359acb6d20d9e5b474418ba46c0ddba5bcc15d253b8ad85",
+            "versions": {
+              "torch": "2.13.0+cu130",
+              "torchvision": "0.28.0+cu130",
+              "pytorch-ignite": "0.5.5",
+              "numpy": "2.4.4",
+              "scipy": "1.18.0"
+            },
+            "covariance": "unbiased sample covariance, denominator N-1",
+            "metric_implementation": "historical hw2_gan.evaluate.compute_feature_metrics/Ignite"
+          }
+        },
+        "torchvision2048pool-v1": {
+          "fid": 14.508430211766495,
+          "fid_raw_before_roundoff_clamp": 14.508430211766495,
+          "mean_distance_squared": 0.07665488720761297,
+          "covariance_trace_sum": 407.6535571778575,
+          "twice_covariance_cross_trace": 393.22178185329864,
+          "psd_eigenvalue_roundoff_guard": 6.959260313578897e-09,
+          "negative_fid_roundoff_guard": 1e-06,
+          "protocol_hash": "615c446d6369b4f3cf8d7b58616fa3d2d58b9fc2a5e6840a28f8144cc226dc0e",
+          "protocol": {
+            "protocol_id": "torchvision2048pool-v1",
+            "features": "2048 average-pooled Inception-v3 activations before dropout/fc",
+            "weights": "torchvision Inception_V3_Weights.IMAGENET1K_V1",
+            "weights_url": "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth",
+            "input": "RGB [-1,1] mapped to [0,1]",
+            "resize": "299x299 bilinear, align_corners=False, antialias=True",
+            "normalization_mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "normalization_std": [
+              0.229,
+              0.224,
+              0.225
+            ],
+            "transform_input": true,
+            "effective_first_conv_input": "2 * resized_RGB_[0,1] - 1",
+            "inception_score": "aggregate over all generated softmax rows; no split averaging",
+            "feature_device_type": "cuda",
+            "precision": "float32; autocast disabled",
+            "runtime_numeric_settings": {
+              "cuda_matmul_allow_tf32": false,
+              "cudnn_allow_tf32": true,
+              "cudnn_benchmark": false,
+              "cudnn_deterministic": true
+            },
+            "torchvision_inception_source_sha256": "6791db7e2ee8b7a29359acb6d20d9e5b474418ba46c0ddba5bcc15d253b8ad85",
+            "versions": {
+              "torch": "2.13.0+cu130",
+              "torchvision": "0.28.0+cu130",
+              "pytorch-ignite": "0.5.5",
+              "numpy": "2.4.4",
+              "scipy": "1.18.0"
+            },
+            "covariance": "unbiased sample covariance, denominator N-1",
+            "metric_implementation": "float64 symmetric PSD eigendecomposition of C_real^(1/2) C_gen C_real^(1/2)"
+          }
+        }
+      }
+    },
+    {
+      "step": "original_baseline95_recomputed",
+      "elapsed_seconds": 104.2664647809579,
+      "reference": "validation_legacy1024",
+      "metrics": {
+        "legacy1000prob-v1": {
+          "fid": 0.06910661290392753,
+          "fid_raw_before_roundoff_clamp": 0.06910661290392753,
+          "inception_score": 4.53024761977543,
+          "real_inception_score_reference": 7.035859362010361,
+          "protocol": {
+            "covariance": "unbiased sample covariance, denominator N-1",
+            "effective_first_conv_input": "2 * resized_RGB_[0,1] - 1",
+            "feature_device_type": "cuda",
+            "features": "1000 ImageNet class probabilities",
+            "inception_score": "aggregate over all generated softmax rows; no split averaging",
+            "input": "RGB [-1,1] mapped to [0,1]",
+            "metric_implementation": "historical hw2_gan.evaluate.compute_feature_metrics/Ignite",
+            "normalization_mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "normalization_std": [
+              0.229,
+              0.224,
+              0.225
+            ],
+            "precision": "float32; autocast disabled",
+            "protocol_id": "legacy1000prob-v1",
+            "resize": "299x299 bilinear, align_corners=False, antialias=True",
+            "runtime_numeric_settings": {
+              "cuda_matmul_allow_tf32": false,
+              "cudnn_allow_tf32": true,
+              "cudnn_benchmark": false,
+              "cudnn_deterministic": true
+            },
+            "torchvision_inception_source_sha256": "6791db7e2ee8b7a29359acb6d20d9e5b474418ba46c0ddba5bcc15d253b8ad85",
+            "transform_input": true,
+            "versions": {
+              "numpy": "2.4.4",
+              "pytorch-ignite": "0.5.5",
+              "scipy": "1.18.0",
+              "torch": "2.13.0+cu130",
+              "torchvision": "0.28.0+cu130"
+            },
+            "weights": "torchvision Inception_V3_Weights.IMAGENET1K_V1",
+            "weights_url": "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth"
+          },
+          "protocol_hash": "56b35821081a7fe468ec711bbf4dcb3bdb97996f93af799d88a38d0682d7ad36",
+          "num_real_images": 1024,
+          "num_generated_images": 1024
+        }
+      }
+    },
+    {
+      "step": "original_baseline95_recomputed",
+      "elapsed_seconds": 112.71581167198019,
+      "reference": "validation_pool4000_a",
+      "metrics": {
+        "legacy1000prob-v1": {
+          "fid": 0.05870819663475724,
+          "fid_raw_before_roundoff_clamp": 0.05870819663475724,
+          "inception_score": 4.726106495731174,
+          "real_inception_score_reference": 7.485415207555408,
+          "protocol": {
+            "covariance": "unbiased sample covariance, denominator N-1",
+            "effective_first_conv_input": "2 * resized_RGB_[0,1] - 1",
+            "feature_device_type": "cuda",
+            "features": "1000 ImageNet class probabilities",
+            "inception_score": "aggregate over all generated softmax rows; no split averaging",
+            "input": "RGB [-1,1] mapped to [0,1]",
+            "metric_implementation": "historical hw2_gan.evaluate.compute_feature_metrics/Ignite",
+            "normalization_mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "normalization_std": [
+              0.229,
+              0.224,
+              0.225
+            ],
+            "precision": "float32; autocast disabled",
+            "protocol_id": "legacy1000prob-v1",
+            "resize": "299x299 bilinear, align_corners=False, antialias=True",
+            "runtime_numeric_settings": {
+              "cuda_matmul_allow_tf32": false,
+              "cudnn_allow_tf32": true,
+              "cudnn_benchmark": false,
+              "cudnn_deterministic": true
+            },
+            "torchvision_inception_source_sha256": "6791db7e2ee8b7a29359acb6d20d9e5b474418ba46c0ddba5bcc15d253b8ad85",
+            "transform_input": true,
+            "versions": {
+              "numpy": "2.4.4",
+              "pytorch-ignite": "0.5.5",
+              "scipy": "1.18.0",
+              "torch": "2.13.0+cu130",
+              "torchvision": "0.28.0+cu130"
+            },
+            "weights": "torchvision Inception_V3_Weights.IMAGENET1K_V1",
+            "weights_url": "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth"
+          },
+          "protocol_hash": "56b35821081a7fe468ec711bbf4dcb3bdb97996f93af799d88a38d0682d7ad36",
+          "num_real_images": 4000,
+          "num_generated_images": 4000
+        },
+        "torchvision2048pool-v1": {
+          "fid": 45.94124861398359,
+          "fid_raw_before_roundoff_clamp": 45.94124861398359,
+          "mean_distance_squared": 9.676070124227138,
+          "covariance_trace_sum": 384.6060679712334,
+          "twice_covariance_cross_trace": 348.34088948147695,
+          "psd_eigenvalue_roundoff_guard": 4.4872587669420714e-09,
+          "negative_fid_roundoff_guard": 1e-06,
+          "inception_score": 4.726106495731174,
+          "real_inception_score_reference": 7.485415207555408,
+          "protocol": {
+            "covariance": "unbiased sample covariance, denominator N-1",
+            "effective_first_conv_input": "2 * resized_RGB_[0,1] - 1",
+            "feature_device_type": "cuda",
+            "features": "2048 average-pooled Inception-v3 activations before dropout/fc",
+            "inception_score": "aggregate over all generated softmax rows; no split averaging",
+            "input": "RGB [-1,1] mapped to [0,1]",
+            "metric_implementation": "float64 symmetric PSD eigendecomposition of C_real^(1/2) C_gen C_real^(1/2)",
+            "normalization_mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "normalization_std": [
+              0.229,
+              0.224,
+              0.225
+            ],
+            "precision": "float32; autocast disabled",
+            "protocol_id": "torchvision2048pool-v1",
+            "resize": "299x299 bilinear, align_corners=False, antialias=True",
+            "runtime_numeric_settings": {
+              "cuda_matmul_allow_tf32": false,
+              "cudnn_allow_tf32": true,
+              "cudnn_benchmark": false,
+              "cudnn_deterministic": true
+            },
+            "torchvision_inception_source_sha256": "6791db7e2ee8b7a29359acb6d20d9e5b474418ba46c0ddba5bcc15d253b8ad85",
+            "transform_input": true,
+            "versions": {
+              "numpy": "2.4.4",
+              "pytorch-ignite": "0.5.5",
+              "scipy": "1.18.0",
+              "torch": "2.13.0+cu130",
+              "torchvision": "0.28.0+cu130"
+            },
+            "weights": "torchvision Inception_V3_Weights.IMAGENET1K_V1",
+            "weights_url": "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth"
+          },
+          "protocol_hash": "615c446d6369b4f3cf8d7b58616fa3d2d58b9fc2a5e6840a28f8144cc226dc0e",
+          "num_real_images": 4000,
+          "num_generated_images": 4000
+        }
+      }
+    }
+  ],
+  "allocation": {
+    "SLURM_JOB_ID": "61385260",
+    "SLURM_JOB_ACCOUNT": "m5397_g",
+    "SLURM_JOB_QOS": "gpu_shared_interactive",
+    "SLURM_STEP_GPUS": "2",
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "torch_version": "2.13.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "finished_utc": "2026-11-16T04:40:11.412235+00:00",
+  "elapsed_seconds": 112.71830557700014
+}

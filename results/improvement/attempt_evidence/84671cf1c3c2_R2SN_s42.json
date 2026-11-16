@@ -1,0 +1,14 @@
+{
+  "id": "R2SN_s42",
+  "task_config_sha256": "f9f4aed65c998c33336de7d7881c236e58c9baf1ab6913442f4023b11b3608be",
+  "started_utc": "2026-11-16T05:14:08.375395+00:00",
+  "status": "completed",
+  "pilot_epochs": [
+    1,
+    2
+  ],
+  "pilot_training_seconds": 18.66040904005058,
+  "pilot_elapsed_seconds": 37.70436791703105,
+  "finished_utc": "2026-11-16T05:47:33.649791+00:00",
+  "elapsed_seconds": 2005.2744002650143
+}

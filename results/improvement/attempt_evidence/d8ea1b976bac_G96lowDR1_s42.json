@@ -1,0 +1,12 @@
+{
+  "id": "G96lowDR1_s42",
+  "task_config_sha256": "c6b25d49021043a2b6dd07e4e7d864e33dc1d8f1d1f1e1cb4c0d4ab4866370e3",
+  "started_utc": "2026-11-16T05:18:40.469487+00:00",
+  "status": "production_running",
+  "pilot_epochs": [
+    1,
+    2
+  ],
+  "pilot_training_seconds": 28.091247033968102,
+  "pilot_elapsed_seconds": 50.73561228602193
+}

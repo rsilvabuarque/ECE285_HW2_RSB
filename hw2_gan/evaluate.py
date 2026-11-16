@@ -5,6 +5,8 @@ real features are cached by exact input indices and evaluation protocol.
 """
 
 import argparse
+from contextlib import contextmanager
+import fcntl
 import hashlib
 import importlib.metadata
 import json
@@ -12,6 +14,7 @@ import math
 import os
 from pathlib import Path
 import socket
+import tempfile
 
 import numpy as np
 import torch
@@ -32,6 +35,27 @@ def _file_hash(path):
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             result.update(block)
     return result.hexdigest()
+
+
+@contextmanager
+def _real_cache_lock(path):
+    """Serialize first creation; process exit releases the advisory lock."""
+    with path.with_suffix(".lock").open("a+b") as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle, fcntl.LOCK_UN)
+
+
+def _read_real_cache(path, identity, count):
+    with np.load(path, allow_pickle=False) as saved:
+        if json.loads(str(saved["metadata"].item())) != identity:
+            raise ValueError("Real-feature cache metadata mismatch.")
+        real = torch.from_numpy(saved["probabilities"].copy())
+    if real.shape != (count, 1000) or not torch.isfinite(real).all():
+        raise ValueError("Real-feature cache shape/content mismatch.")
+    return real
 
 
 def _state_hash(G):
@@ -101,13 +125,15 @@ def compute_feature_metrics(real, generated):
 
 
 def evaluate_generator(G, cache_dir, split, num_samples, seed, device, output_dir,
-                       batch_size=64, save_probabilities=False):
+                       batch_size=64, save_probabilities=False, cache_mode="readwrite"):
     """Evaluate without advancing training RNG or changing generator BN/mode.
 
     num_samples=0 uses the whole split; larger requests are capped to its size
     and both requested/actual counts are recorded. Prior draws use their own
     CPU generator, independent of real-reference selection and batch chunking.
     """
+    if cache_mode not in ("readwrite", "readonly"):
+        raise ValueError("cache_mode must be readwrite or readonly.")
     if split not in ("val", "test") or num_samples < 0 or batch_size < 1:
         raise ValueError("Use val/test, nonnegative num_samples, and positive batch_size.")
     if os.environ.get("NERSC_HOST") == "perlmutter" and (
@@ -142,12 +168,9 @@ def evaluate_generator(G, cache_dir, split, num_samples, seed, device, output_di
     real_path = feature_dir / (_digest(real_key) + ".npz")
     real = None
     if real_path.exists():
-        with np.load(real_path, allow_pickle=False) as saved:
-            if json.loads(str(saved["metadata"].item())) != real_key:
-                raise ValueError("Real-feature cache metadata mismatch.")
-            real = torch.from_numpy(saved["probabilities"].copy())
-        if real.shape != (count, 1000):
-            raise ValueError("Real-feature cache shape mismatch.")
+        real = _read_real_cache(real_path, real_key, count)
+    elif cache_mode == "readonly":
+        raise FileNotFoundError("Precompute the immutable real cache before parallel evaluation.")
     real_cache_hit = real is not None
     # Preserve every module's original mode, including any deliberately frozen BN.
     modes = [(module, module.training) for module in G.modules()]
@@ -159,15 +182,24 @@ def evaluate_generator(G, cache_dir, split, num_samples, seed, device, output_di
                 torch.autocast(device_type=device.type, enabled=False):
             extractor = InceptionProbabilities().to(device).eval()
             if real is None:
-                loader = DataLoader(Subset(dataset, local_indices), batch_size=batch_size,
-                                    num_workers=0, shuffle=False,
-                                    generator=torch.Generator().manual_seed(seed + 200000))
-                real = torch.cat([extractor(images.to(device)).cpu() for images in loader])
-                temporary = real_path.with_suffix(".npz.tmp")
-                with temporary.open("wb") as handle:
-                    np.savez_compressed(handle, probabilities=real.numpy(),
-                                        metadata=np.array(json.dumps(real_key, sort_keys=True)))
-                temporary.replace(real_path)
+                with _real_cache_lock(real_path):
+                    if real_path.exists():
+                        real = _read_real_cache(real_path, real_key, count)
+                        real_cache_hit = True
+                    else:
+                        loader = DataLoader(Subset(dataset, local_indices), batch_size=batch_size,
+                                            num_workers=0, shuffle=False,
+                                            generator=torch.Generator().manual_seed(seed + 200000))
+                        real = torch.cat([extractor(images.to(device)).cpu() for images in loader])
+                        fd, name = tempfile.mkstemp(prefix=real_path.name+".", suffix=".tmp", dir=feature_dir)
+                        temporary = Path(name)
+                        try:
+                            with os.fdopen(fd, "wb") as handle:
+                                np.savez_compressed(handle, probabilities=real.numpy(),
+                                                    metadata=np.array(json.dumps(real_key, sort_keys=True)))
+                            temporary.replace(real_path)
+                        finally:
+                            temporary.unlink(missing_ok=True)
             prior_rng = torch.Generator().manual_seed(seed)
             latents = torch.randn(count, G.latent_dim, generator=prior_rng)
             generated = torch.cat([extractor(G(z.to(device))).cpu()
@@ -209,6 +241,7 @@ def main():
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--save-probabilities", action="store_true")
+    parser.add_argument("--cache-mode", choices=("readwrite", "readonly"), default="readwrite")
     args = parser.parse_args()
     if os.environ.get("NERSC_HOST") == "perlmutter" and (
             not os.environ.get("SLURM_JOB_ID") or socket.gethostname().startswith("login")):
@@ -217,7 +250,8 @@ def main():
     device = torch.device(args.device)
     G, state = load_generator(args.checkpoint, device)
     result = evaluate_generator(G, args.cache_dir, args.split, args.num_samples, args.seed,
-                                device, args.output_dir, args.batch_size, args.save_probabilities)
+                                device, args.output_dir, args.batch_size, args.save_probabilities,
+                                args.cache_mode)
     result.update(checkpoint=str(args.checkpoint.resolve()),
                   checkpoint_sha256=_file_hash(args.checkpoint), checkpoint_epoch=state["epoch"])
     _save_json(args.output_dir / "metrics.json", result)

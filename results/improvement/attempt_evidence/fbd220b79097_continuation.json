@@ -1,0 +1,17 @@
+{
+  "family": "A1",
+  "seed": 314,
+  "schedule": "linear_decay",
+  "output_dir": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/runs/A1_decay_s314",
+  "cache_dir": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/cache/rgb64",
+  "parent_source": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/runs/A1_s314/last.pt",
+  "immutable_parent": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/parents_epoch200/A1_s314/last.pt",
+  "screening_freeze": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/selection/screening_freeze.json",
+  "screening_sha256": "155733bccbfdc74b2dbb7f3d68174e3d96dc0a25b8a6f92e3a4e6edc5ca5e5a3",
+  "source_code_commit": "001a07a1c35cd046ecb043b47e3eb432cd7a13bd",
+  "extension_freeze": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/selection/extension_spec_freeze.json",
+  "extension_sha256": "94432713a8c0edf6ca65d39349592f0ddc8cf367ba6768169a26377884730234",
+  "parent_sha256": "00ec3e2be89ba4b8d633d753478776c8a05f0429cd6eababb9c835b68a1342e9",
+  "task_sha256": "6d07cefc67767919a95002ce826170a7ec26b2b8d9743a2ec30210af2a30b828",
+  "completed_utc": "2026-11-16T07:47:44.111339+00:00"
+}

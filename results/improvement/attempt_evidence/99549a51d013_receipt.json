@@ -1,0 +1,28 @@
+{
+  "started_utc": "2026-11-16T04:36:36.454292+00:00",
+  "host": "nid200256",
+  "status": "failed",
+  "steps": [
+    {
+      "step": "passed_campaign.tests.test_model",
+      "elapsed_seconds": 7.352625831961632
+    },
+    {
+      "step": "passed_campaign.tests.test_evaluate_protocols",
+      "elapsed_seconds": 13.5112470969907
+    }
+  ],
+  "allocation": {
+    "SLURM_JOB_ID": "61385177",
+    "SLURM_JOB_ACCOUNT": "m5397_g",
+    "SLURM_JOB_QOS": "gpu_shared_interactive",
+    "SLURM_STEP_GPUS": "2",
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "torch_version": "2.13.0+cu130",
+  "cuda_version": "13.0",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "traceback": "Traceback (most recent call last):\n  File \"/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_v1/campaign/preflight.py\", line 78, in main\n    run_test(module)\n  File \"/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_v1/campaign/preflight.py\", line 72, in run_test\n    subprocess.run([sys.executable, \"-m\", module, *map(str, options)], check=True)\n  File \"/global/common/software/nersc9/pytorch/2.13.0/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/.venv-perlmutter/bin/python', '-m', 'campaign.tests.test_campaign']' returned non-zero exit status 1.\n",
+  "finished_utc": "2026-11-16T04:36:55.678694+00:00",
+  "elapsed_seconds": 19.22442477097502
+}

@@ -1,0 +1,33 @@
+{
+  "winner_family": "A1",
+  "winner_variant": "ema",
+  "models": {
+    "original95": {
+      "epoch": 95,
+      "variant": "raw",
+      "seed": 42
+    },
+    "matched_C0F": {
+      "epoch": 250,
+      "variant": "ema",
+      "seed": 314
+    },
+    "winner": {
+      "epoch": 300,
+      "variant": "ema",
+      "seed": 123
+    }
+  },
+  "prior_seed": 43,
+  "displayed_tile_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "full_fixed_grid_count": 64
+}

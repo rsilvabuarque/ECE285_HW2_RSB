@@ -1,0 +1,479 @@
+{
+  "account": "m5397_g",
+  "scope": "20261115 improvement campaign only",
+  "node_hour_rate_per_single_shared_GPU_hour": 0.25,
+  "owned_jobs": [
+    {
+      "job_id": 61385177,
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "elapsed_seconds": 31,
+      "charged_node_hours": 0.0021527777777777778,
+      "reason": "resume diagnostic-cadence inheritance smoke failure",
+      "sacct_records": [
+        {
+          "JobID": "61385177",
+          "Account": "m5397_g",
+          "State": "FAILED",
+          "ExitCode": "1:0",
+          "ElapsedRaw": "31",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=14887,gres/gpu:a100=1,gres/gpu=1,mem=57472M,node=1",
+          "Start": "2026-11-15T20:36:25",
+          "End": "2026-11-15T20:36:56"
+        }
+      ]
+    },
+    {
+      "job_id": 61385260,
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed_seconds": 120,
+      "charged_node_hours": 0.008333333333333333,
+      "purpose": "corrected complete preflight",
+      "sacct_records": [
+        {
+          "JobID": "61385260",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "120",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=69848,gres/gpu:a100=1,gres/gpu=1,mem=57472M,node=1",
+          "Start": "2026-11-15T20:38:13",
+          "End": "2026-11-15T20:40:13"
+        }
+      ]
+    },
+    {
+      "job_id": 61385484,
+      "state": "COMPLETED",
+      "nodes": 1,
+      "max_wall_seconds": 7200,
+      "maximum_reserved_node_hours": 4,
+      "purpose": "screening wave1 twelve staged200epoch arms, eightconcurrent",
+      "launcher_session": 13479,
+      "charged_node_hour_rate_per_elapsed_hour": 1,
+      "resize_receipt": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/firstwave_idle_node_release.json",
+      "resize_requested_utc": "2026-11-16T05:20:04.581194+00:00",
+      "resize_finished_utc": "2026-11-16T05:20:04.845178+00:00",
+      "billing_policy": "sacct latest elapsed is cumulative from original start;2nodes before1940s,1node thereafter.",
+      "exit_code": "0:0",
+      "elapsed_seconds": 4363,
+      "sacct_records": [
+        {
+          "JobID": "61385484",
+          "Account": "m5397_g",
+          "State": "RESIZING",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "1940",
+          "AllocNodes": "2",
+          "AllocTRES": "billing=256,cpu=256,gres/gpu:a100=8,gres/gpu=8,mem=459604M,node=2",
+          "Start": "2026-11-15T20:47:44",
+          "End": "2026-11-15T21:20:04"
+        },
+        {
+          "JobID": "61385484",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "4363",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=128,cpu=128,energy=4094102,gres/gpu:a100=4,gres/gpu=4,mem=229802M,node=1",
+          "Start": "2026-11-15T20:47:44",
+          "End": "2026-11-15T22:00:27"
+        }
+      ],
+      "billing_segments": [
+        {
+          "nodes": 2,
+          "elapsed_seconds": 1940
+        },
+        {
+          "nodes": 1,
+          "elapsed_seconds": 2423
+        }
+      ],
+      "charged_node_hours": 1.7508333333333332
+    },
+    {
+      "job_id": 61385907,
+      "state": "COMPLETED",
+      "qos": "shared_interactive",
+      "gpus": 1,
+      "max_wall_seconds": 5400,
+      "maximum_reserved_node_hours": 0.375,
+      "charged_node_hour_rate_per_elapsed_hour": 0.25,
+      "purpose": "V4 optional integration and native128 raw-data100epoch demonstration",
+      "launcher_session": 67339,
+      "exit_code": "0:0",
+      "elapsed_seconds": 1945,
+      "charged_node_hours": 0.13506944444444444,
+      "sacct_records": [
+        {
+          "JobID": "61385907",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "1945",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=1292109,gres/gpu:a100=1,gres/gpu=1,mem=57472M,node=1",
+          "Start": "2026-11-15T21:03:33",
+          "End": "2026-11-15T21:35:58"
+        }
+      ]
+    },
+    {
+      "job_id": 61386379,
+      "state": "CANCELLED by 98231",
+      "qos": "shared_interactive",
+      "gpus": 2,
+      "max_wall_seconds": 4500,
+      "maximum_reserved_node_hours": 0.625,
+      "charged_node_hour_rate_per_elapsed_hour": 0.5,
+      "purpose": "Secondary two costly G96R1/G96lowDR1 families in parallel ahead offullnodeavailability",
+      "launcher_session": 77092,
+      "exit_code": "0:0",
+      "elapsed_seconds": 511,
+      "charged_node_hours": 0.07097222222222223,
+      "reason": "Confirmed inherited2GPUpernodeGRESreservation serializedoneGPUtasks; full25retainedthenboundedrepair",
+      "sacct_records": [
+        {
+          "JobID": "61386379",
+          "Account": "m5397_g",
+          "State": "CANCELLED by 98231",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "511",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=64,cpu=64,energy=408116,gres/gpu:a100=2,gres/gpu=2,mem=112G,node=1",
+          "Start": "2026-11-15T21:18:25",
+          "End": "2026-11-15T21:26:56"
+        }
+      ]
+    },
+    {
+      "job_id": 61386820,
+      "state": "FAILED",
+      "qos": "shared_interactive",
+      "gpus": 2,
+      "max_wall_seconds": 4500,
+      "maximum_reserved_node_hours": 0.625,
+      "charged_node_hour_rate_per_elapsed_hour": 0.5,
+      "purpose": "FixedoneGPUperstepretry; pairedCUDAcounterfactualpassed; lowD25resumes; G96R1outputcollisionfailurepreserved",
+      "launcher_session": 91672,
+      "known_idle_gpu_tail_reason": "CancellationraceleftpartialG96R1folder; freshretrycorrectlyrejected; preservehealthyothertraining andschedulefreshG96R1separately",
+      "exit_code": "1:0",
+      "elapsed_seconds": 2463,
+      "sacct_records": [
+        {
+          "JobID": "61386820",
+          "Account": "m5397_g",
+          "State": "FAILED",
+          "ExitCode": "1:0",
+          "ElapsedRaw": "2463",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=64,cpu=64,energy=1639393,gres/gpu:a100=2,gres/gpu=2,mem=112G,node=1",
+          "Start": "2026-11-15T21:28:28",
+          "End": "2026-11-15T22:09:31"
+        }
+      ],
+      "charged_node_hours": 0.34208333333333335
+    },
+    {
+      "job_id": 61387239,
+      "state": "COMPLETED",
+      "qos": "shared_interactive",
+      "gpus": 1,
+      "max_wall_seconds": 3600,
+      "maximum_reserved_node_hours": 0.25,
+      "charged_node_hour_rate_per_elapsed_hour": 0.25,
+      "purpose": "FreshG96R1 afterpreservedpartialcancelledattempt andnonemptyoutputrejection; correctGPUpernode1",
+      "launcher_session": 53256,
+      "exit_code": "0:0",
+      "elapsed_seconds": 2769,
+      "sacct_records": [
+        {
+          "JobID": "61387239",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "2769",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=1953475,gres/gpu:a100=1,gres/gpu=1,mem=57472M,node=1",
+          "Start": "2026-11-15T21:36:39",
+          "End": "2026-11-15T22:22:48"
+        }
+      ],
+      "charged_node_hours": 0.19229166666666667
+    },
+    {
+      "job_id": 61388897,
+      "state": "COMPLETED",
+      "qos": "interactive",
+      "nodes": 1,
+      "gpus": 4,
+      "max_wall_seconds": 4500,
+      "maximum_reserved_node_hours": 1.25,
+      "charged_node_hour_rate_per_elapsed_hour": 1,
+      "purpose": "Remainingfour simple64families D48/DEvalG/DiffAug/G96noBN, fixedoneGPUperstep",
+      "launcher_session": 92869,
+      "exit_code": "0:0",
+      "elapsed_seconds": 1778,
+      "sacct_records": [
+        {
+          "JobID": "61388897",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "1778",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=128,cpu=128,energy=1830128,gres/gpu:a100=4,gres/gpu=4,mem=487802M,node=1",
+          "Start": "2026-11-15T22:01:39",
+          "End": "2026-11-15T22:31:17"
+        }
+      ],
+      "charged_node_hours": 0.4938888888888889
+    },
+    {
+      "job_id": 61389433,
+      "state": "COMPLETED",
+      "qos": "shared_interactive",
+      "gpus": 1,
+      "max_wall_seconds": 2700,
+      "maximum_reserved_node_hours": 0.1875,
+      "charged_node_hour_rate_per_elapsed_hour": 0.25,
+      "purpose": "Fifthremaining64family G96lowDnoBN; disjointownsingleGPUallocation",
+      "launcher_session": 54725,
+      "exit_code": "0:0",
+      "elapsed_seconds": 1589,
+      "sacct_records": [
+        {
+          "JobID": "61389433",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "1589",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=1288501,gres/gpu:a100=1,gres/gpu=1,mem=57472M,node=1",
+          "Start": "2026-11-15T22:10:01",
+          "End": "2026-11-15T22:36:30"
+        }
+      ],
+      "charged_node_hours": 0.11034722222222222
+    },
+    {
+      "job_id": 61390826,
+      "state": "COMPLETED",
+      "qos": "interactive",
+      "nodes": 2,
+      "gpus": 8,
+      "max_wall_seconds": 4500,
+      "maximum_reserved_node_hours": 2.5,
+      "charged_node_hour_rate_per_elapsed_hour": 2,
+      "purpose": "Eightfresh123/314confirmations plusfiveseed42constant/decayextensions afterwhole19screenfreeze",
+      "launcher_session": 67033,
+      "exit_code": "0:0",
+      "elapsed_seconds": 2417,
+      "sacct_records": [
+        {
+          "JobID": "61390826",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "2417",
+          "AllocNodes": "2",
+          "AllocTRES": "billing=256,cpu=256,energy=4866055,gres/gpu:a100=8,gres/gpu=8,mem=975604M,node=2",
+          "Start": "2026-11-15T22:41:47",
+          "End": "2026-11-15T23:22:04"
+        }
+      ],
+      "charged_node_hours": 1.3427777777777778
+    },
+    {
+      "job_id": 61392021,
+      "state": "COMPLETED",
+      "qos": "interactive",
+      "nodes": 2,
+      "gpus": 8,
+      "max_wall_seconds": 2700,
+      "maximum_reserved_node_hours": 1.5,
+      "charged_node_hour_rate_per_elapsed_hour": 2,
+      "purpose": "Ten fixedspec123/314constant/pairedA1decayextensions from immutablefull200 states",
+      "launcher_session": 68913,
+      "exit_code": "0:0",
+      "elapsed_seconds": 1459,
+      "sacct_records": [
+        {
+          "JobID": "61392021",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "1459",
+          "AllocNodes": "2",
+          "AllocTRES": "billing=256,cpu=256,energy=2514520,gres/gpu:a100=8,gres/gpu=8,mem=975604M,node=2",
+          "Start": "2026-11-15T23:23:25",
+          "End": "2026-11-15T23:47:44"
+        }
+      ],
+      "charged_node_hours": 0.8105555555555556
+    },
+    {
+      "job_id": 61393035,
+      "state": "FAILED",
+      "qos": "interactive",
+      "nodes": 1,
+      "gpus": 4,
+      "max_wall_seconds": 2700,
+      "maximum_reserved_node_hours": 0.75,
+      "charged_node_hour_rate_per_elapsed_hour": 1,
+      "purpose": "Three parallel allocated112/20/27 payload audits, guarded independent acceptance, finaltestonce/analysis/permanent retention",
+      "launcher_session": 48026,
+      "source_bundle": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_final_v7",
+      "source_manifest_sha256": "41b5455f82dd7cc7b9481987a734ca109a3b30145ed2386caaba2191e5522aee",
+      "controller_log": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/final_audit_eval_allocation_v1.log",
+      "exit_code": "1:0",
+      "elapsed_seconds": 1240,
+      "sacct_records": [
+        {
+          "JobID": "61393035",
+          "Account": "m5397_g",
+          "State": "FAILED",
+          "ExitCode": "1:0",
+          "ElapsedRaw": "1240",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=128,cpu=128,energy=411934,gres/gpu:a100=4,gres/gpu=4,mem=229802M,node=1",
+          "Start": "2026-11-16T00:28:20",
+          "End": "2026-11-16T00:49:00"
+        }
+      ],
+      "charged_node_hours": 0.34444444444444444
+    },
+    {
+      "job_id": 61393704,
+      "state": "FAILED",
+      "qos": "shared_interactive",
+      "nodes": 1,
+      "gpus": 1,
+      "max_wall_seconds": 3600,
+      "maximum_reserved_node_hours": 0.25,
+      "charged_node_hour_rate_per_elapsed_hour": 0.25,
+      "purpose": "In-place complete source/destination retention byte verification after preserved helper metadata race; no test or bulk numerical copies",
+      "launcher_session": 90340,
+      "source_bundle": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_retention_recovery_v8",
+      "source_manifest_sha256": "829b3957303e973045ac6d7234d34ea17cb193bd6d08a4f297e3d3eb9c216924",
+      "controller_log": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/retention_verify_allocation_v1.log",
+      "exit_code": "1:0",
+      "elapsed_seconds": 223,
+      "sacct_records": [
+        {
+          "JobID": "61393704",
+          "Account": "m5397_g",
+          "State": "FAILED",
+          "ExitCode": "1:0",
+          "ElapsedRaw": "223",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=115151,gres/gpu:a100=1,gres/gpu=1,mem=56G,node=1",
+          "Start": "2026-11-16T01:01:00",
+          "End": "2026-11-16T01:04:43"
+        }
+      ],
+      "charged_node_hours": 0.015486111111111112
+    },
+    {
+      "job_id": 61393991,
+      "state": "FAILED",
+      "qos": "shared_interactive",
+      "nodes": 1,
+      "gpus": 1,
+      "max_wall_seconds": 900,
+      "maximum_reserved_node_hours": 0.0625,
+      "charged_node_hour_rate_per_elapsed_hour": 0.25,
+      "purpose": "Complete intended-source census plus full in-place byte verification after all small helper metadata preflight; no test or numerical copying",
+      "launcher_session": 26601,
+      "source_bundle": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_retention_recovery_v9",
+      "source_manifest_sha256": "f2406c00210aee51775a4125307b9a1b20595593bb18922cb4633a77fb9523c9",
+      "controller_log": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/retention_verify_allocation_v2.log",
+      "exit_code": "1:0",
+      "elapsed_seconds": 113,
+      "sacct_records": [
+        {
+          "JobID": "61393991",
+          "Account": "m5397_g",
+          "State": "FAILED",
+          "ExitCode": "1:0",
+          "ElapsedRaw": "113",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=36287,gres/gpu:a100=1,gres/gpu=1,mem=56G,node=1",
+          "Start": "2026-11-16T01:12:09",
+          "End": "2026-11-16T01:14:02"
+        }
+      ],
+      "charged_node_hours": 0.007847222222222222
+    },
+    {
+      "job_id": 61394105,
+      "state": "COMPLETED",
+      "qos": "shared_interactive",
+      "nodes": 1,
+      "gpus": 1,
+      "max_wall_seconds": 900,
+      "maximum_reserved_node_hours": 0.0625,
+      "charged_node_hour_rate_per_elapsed_hour": 0.25,
+      "purpose": "Final full in-place retention verification after complete pre-submission source census; no test/training/bulk numerical copy",
+      "launcher_session": 11405,
+      "source_bundle": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_retention_recovery_v9",
+      "source_manifest_sha256": "f2406c00210aee51775a4125307b9a1b20595593bb18922cb4633a77fb9523c9",
+      "controller_log": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/retention_verify_allocation_v3.log",
+      "exit_code": "0:0",
+      "elapsed_seconds": 157,
+      "sacct_records": [
+        {
+          "JobID": "61394105",
+          "Account": "m5397_g",
+          "State": "COMPLETED",
+          "ExitCode": "0:0",
+          "ElapsedRaw": "157",
+          "AllocNodes": "1",
+          "AllocTRES": "billing=32,cpu=32,energy=60272,gres/gpu:a100=1,gres/gpu=1,mem=56G,node=1",
+          "Start": "2026-11-16T01:18:25",
+          "End": "2026-11-16T01:21:02"
+        }
+      ],
+      "charged_node_hours": 0.010902777777777779
+    }
+  ],
+  "settled_node_hours": 5.637986111111111,
+  "submission_rejections": [
+    {
+      "reason": "Site logical queue interpreted gpus-per-task1 as1GPU on allocation with64cores; requires32cores/GPU",
+      "no_job_created": true,
+      "charged_node_hours": 0,
+      "log": "screen_wave2_regularization_allocation.log",
+      "repair": "Explicit gpus-per-node2 in retry"
+    },
+    {
+      "reason": "QOSMaxSubmitJobPerUserLimit: both allowed shared_interactive submissions occupied by unrelated energy jobs",
+      "no_job_created": true,
+      "charged_node_hours": 0,
+      "log": "payload_audit_allocation_v1.log",
+      "repair": "Wait for a normal scheduler slot; no unrelated jobs modified."
+    }
+  ],
+  "last_sacct_query_utc": "2026-11-16T09:22:02.790485+00:00",
+  "retention": {
+    "inventory": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/evidence/retention_inventory.json",
+    "inventory_sha256": "6f94ab9df376ab9e8dba7875a5a3785a0aae2498f1a2a059c0c769379aa68371",
+    "verification_receipt": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/retention_verification_receipt_v3.json",
+    "verification_receipt_sha256": "678c13c505d5fa68df31fd6f74cea30d18c4d71106578ae584b945945ff2a96b",
+    "payload_files_verified": 7110,
+    "payload_bytes_verified": 39475621095,
+    "closed_deferred_artifacts": [
+      {
+        "source": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/retention_verify_allocation_v3.log",
+        "retained": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/evidence/retention_verify_allocation_v3.log",
+        "sha256": "1ea58eb33bd3ac051dc01b6c25c41de3b70c639cfbef004aab7468403ff949a1"
+      }
+    ],
+    "completeness_receipt": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/retention_completeness_v1.json"
+  }
+}

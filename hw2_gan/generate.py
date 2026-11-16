@@ -17,15 +17,22 @@ def main():
     parser.add_argument("--seed",type=int,default=45)
     parser.add_argument("--batch-size",type=int,default=64)
     parser.add_argument("--device",choices=("auto","cuda","cpu"),default="auto")
+    parser.add_argument("--weights",choices=("raw","ema"),default="raw")
+    parser.add_argument("--expected-generator-state-sha256")
     args=parser.parse_args()
     require_compute();torch.set_num_threads(2)
     if args.output_dir.exists(): raise FileExistsError("Use a new output directory.")
     if args.num_samples<1 or args.batch_size<1: raise ValueError("Counts must be positive.")
     device=resolve_device(args.device)
-    G,state=load_generator(args.checkpoint,device)
+    G,state=load_generator(args.checkpoint,device,weights=args.weights)
+    from .evaluate import _state_hash
+    from .evaluate_protocols import _inference_context, array_sha256, EVALUATION_BACKEND
+    generator_hash=_state_hash(G)
+    if args.expected_generator_state_sha256 and generator_hash!=args.expected_generator_state_sha256:
+        raise ValueError("Loaded generator tensors differ from the frozen selection.")
     rng=torch.Generator().manual_seed(args.seed)
     latents=torch.randn(args.num_samples,G.latent_dim,generator=rng)
-    with torch.inference_mode():
+    with _inference_context(device):
         images=torch.cat([G(z.to(device)).cpu() for z in latents.split(args.batch_size)])
     if not torch.isfinite(images).all(): raise FloatingPointError("Nonfinite image pixels.")
     args.output_dir.mkdir(parents=True)
@@ -38,6 +45,12 @@ def main():
     save_json(args.output_dir/"generation.json",{
         "checkpoint":str(args.checkpoint.resolve()),"checkpoint_sha256":file_sha256(args.checkpoint),
         "checkpoint_epoch":state["epoch"],"prior_seed":args.seed,"num_samples":args.num_samples,
+        "generator_variant":args.weights,"generator_state_sha256":generator_hash,
+        "training_seed":state["config"].get("seed"),
+        "latent_file_sha256":file_sha256(args.output_dir/"latents.pt"),
+        "latent_array_sha256":array_sha256(latents.numpy()),
+        "backend_flags_during_generation":EVALUATION_BACKEND,
+        "native_image_size":state["config"].get("image_size",64),
         "method":"Independent standard-normal latent draws; generator only; no input painting.",
         "display":"Fixed [-1,1] to [0,255] rounding; no per-image normalization.",
         "latent_dim":G.latent_dim,"batch_size":args.batch_size,"device":str(device)})

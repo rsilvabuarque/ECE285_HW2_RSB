@@ -1,0 +1,2 @@
+salloc: error: Logical queue gpu_shared_interactive_ss11 requires you to request 32.0 cores per GPU, job requested 64 cores (adjusted for memory) for 1 GPUs
+salloc: error: Job submit/allocate failed: Unspecified error

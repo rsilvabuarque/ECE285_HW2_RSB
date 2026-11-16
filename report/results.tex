@@ -1,37 +1,31 @@
-% Values read from frozen selection.json, complete histories, and final metrics.json.
-\newcommand{\DatasetVersion}{1}
-\newcommand{\ValidCount}{81,444}
-\newcommand{\SplitHashDefinition}{raw-content}
-\newcommand{\TrainCount}{65,089}
-\newcommand{\ValidationCount}{8,155}
-\newcommand{\TestCount}{8,200}
-\newcommand{\GeneratorChannels}{$512\to256\to128\to64\to3$}
-\newcommand{\DiscriminatorChannels}{$64\to128\to256\to512\to1$}
-\newcommand{\DiscriminatorNormalization}{BatchNorm in the three middle blocks}
-\newcommand{\GeneratorParameters}{3,576,704}
-\newcommand{\DiscriminatorParameters}{2,765,568}
-\newcommand{\TrainingImplementation}{Fused sigmoid/BCE evaluates logits stably. During G updates, D parameters are frozen but D remains in training mode, so its BatchNorm buffers update.}
-\newcommand{\TrainingSeed}{42}
-\newcommand{\Initialization}{Conv weights $\mathcal N(0,0.02^2)$; BatchNorm scale $\mathcal N(1,0.02^2)$ and bias zero}
-\newcommand{\TotalTrainingSeconds}{1,264.3}
-\newcommand{\CompletedSteps}{101,800}
-\newcommand{\SelectedEpoch}{95}
-\newcommand{\SelectionFinding}{The baseline rate wins this finite validation comparison; the half-rate arm has slightly higher IS but the declared criterion is probability-FID.}
-\newcommand{\ChoiceFrozenUTC}{08:27:26 UTC, 12 November 2026}
-\newcommand{\FinalPriorSeed}{144}
-\newcommand{\FinalCount}{4096}
-\newcommand{\FigureCount}{8}
-\newcommand{\FigureSeed}{45}
-\newcommand{\CheckpointShortHash}{\texttt{7c823d5b3851}}
-\newcommand{\BaselineEpoch}{95}
-\newcommand{\BaselineFID}{0.069107}
-\newcommand{\BaselineIS}{4.53025}
-\newcommand{\LowerRateEpoch}{100}
-\newcommand{\LowerRateFID}{0.074453}
-\newcommand{\LowerRateIS}{4.66618}
-\newcommand{\FinalFID}{0.059504}
-\newcommand{\FinalIS}{4.51090}
-\newcommand{\AbstractFinding}{Fresh prior draws exhibit varied palettes and painterly forms, with coarse or distorted details; the scores do not establish artistic quality or originality.}
-\newcommand{\VisualFinding}{Fresh draws vary in palette and local texture, with portrait-like vertical forms, landscapes, and abstract patterns; facial features and object boundaries often remain blurred or distorted.}
-\newcommand{\TrainingFinding}{Loss oscillations persist, and neither the 100-epoch budget nor the selected epoch establishes game convergence.}
-\newcommand{\NextTest}{Independent training seeds and an artist/near-duplicate-aware split would test the robustness of this ranking and generalization claim.}
+% Generated only from immutable measured artifacts; comparison SHA256 88daaa54bb2ff72a584d23cdd7cbf68ebc2339f33e8c579379ac8db945074777
+% Qualitative review SHA256 feabf05a5c893e8a85adc8fd95415a4b72445ac5e56e7bffb5d198ccc98c657d
+\newcommand{\WinnerFamily}{A1}
+\newcommand{\WinnerEpoch}{300}
+\newcommand{\WinnerVariant}{EMA}
+\newcommand{\WinnerSeed}{123}
+\newcommand{\WinnerSchedule}{paired linear decay after 200}
+\newcommand{\WinnerSettings}{G64/D64, G/D rates 0.0002/0.0002}
+\newcommand{\WinnerDetails}{real-image horizontal flips}
+\newcommand{\WinnerValPair}{37.89, 36.94; 37.41}
+\newcommand{\ControlValPair}{43.70, 44.84; 44.27}
+\newcommand{\WinnerEpochMode}{300/EMA}
+\newcommand{\ControlEpochMode}{250/EMA}
+\newcommand{\WinnerTestFID}{37.50}
+\newcommand{\ControlTestFID}{44.61}
+\newcommand{\OriginalTestFID}{45.28}
+\newcommand{\WinnerTestIS}{5.17}
+\newcommand{\ControlTestIS}{5.04}
+\newcommand{\OriginalTestIS}{4.70}
+\newcommand{\TestDifference}{7.78}
+\newcommand{\TestDirection}{lower}
+\newcommand{\PairDifferenceOneTwoThree}{-5.81}
+\newcommand{\PairDifferenceThreeOneFour}{-7.90}
+\newcommand{\RzeroBest}{315.44}
+\newcommand{\TotalRuns}{43}
+\newcommand{\SelectedHash}{abeb5ba50f41}
+\newcommand{\SettledNodeHours}{5.64}
+\newcommand{\OriginalValFID}{45.94}
+\newcommand{\RealRealFID}{14.51}
+\newcommand{\VisualFinding}{Generated grids show varied palettes and coarse portrait, landscape and architectural motifs. Faces, hands and object boundaries remain distorted; the lower FID does not establish consistently coherent paintings.}
+\newcommand{\FailureFinding}{Its fixed grid is nearly gray and low contrast, with faint varying structures rather than literally identical outputs.}

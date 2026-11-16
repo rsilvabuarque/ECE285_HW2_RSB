@@ -1,0 +1,61 @@
+{
+  "scope": "Synthetic CUDA implementation checks, no production quality evidence",
+  "checks": [
+    {
+      "workers": 0,
+      "policy": "",
+      "exact_state_and_observable_resume": true
+    },
+    {
+      "workers": 1,
+      "policy": "",
+      "exact_state_and_observable_resume": true
+    },
+    {
+      "workers": 0,
+      "policy": "color,translation,cutout",
+      "exact_state_and_observable_resume": true
+    },
+    {
+      "workers": 1,
+      "policy": "color,translation,cutout",
+      "exact_state_and_observable_resume": true
+    }
+  ],
+  "schedule": {
+    "fork_parent_unchanged": true,
+    "exact_decay_resume": true,
+    "paired_constant_decay201_states_equal": true,
+    "endpoint_factors": [
+      1,
+      0.5
+    ]
+  },
+  "native128_benchmark": [
+    {
+      "width": 32,
+      "batch": 128,
+      "step_seconds": [
+        0.13357693701982498,
+        0.023620197956915945,
+        0.02358215401181951
+      ],
+      "peak_allocated_bytes": 897815040,
+      "G_parameters": 3608000,
+      "D_parameters": 2796928
+    },
+    {
+      "width": 64,
+      "batch": 128,
+      "step_seconds": [
+        0.06866488698869944,
+        0.03955922299064696,
+        0.039501150022260845
+      ],
+      "peak_allocated_bytes": 1938151936,
+      "G_parameters": 12786560,
+      "D_parameters": 11164416
+    }
+  ],
+  "status": "passed"
+}

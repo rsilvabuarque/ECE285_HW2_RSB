@@ -1,0 +1,26 @@
+{
+  "reviewed_utc": "2026-11-16T08:57:49.211797+00:00",
+  "reviewer": "Root independent visual inspection",
+  "fixed_comparison_sha256": "6c0d01e840d3e087bc457fad8b5bc50c3caf932b52398a3fc2e867f36ba80166",
+  "images": {
+    "fixed_comparison": {
+      "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/analysis_v1/figures/fixed_comparison.png",
+      "sha256": "6c0d01e840d3e087bc457fad8b5bc50c3caf932b52398a3fc2e867f36ba80166"
+    },
+    "winner_full64": {
+      "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/analysis_v1/generation/winner/samples_grid.png",
+      "sha256": "2508c113ee6c7f1a3ebc5e969f6792ba3bb7f9999cf4acc53efcd3c9d3793538"
+    },
+    "training_diagnostics": {
+      "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/analysis_v1/figures/training_diagnostics.png",
+      "sha256": "c1a6c09f520a6323dd5b54889e370616598930b601929a8fb113a2d7f45b7e4e"
+    },
+    "R0_best_screening": {
+      "path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/runs/R0_s42/previews/epoch_100_ema.png",
+      "sha256": "0650ae6ae0fad6bd7f81a9ed0ce9e2904beda6642f99b07e027ea04bc4dd4fda"
+    }
+  },
+  "visual_finding": "Generated grids show varied palettes and coarse portrait, landscape and architectural motifs. Faces, hands and object boundaries remain distorted; the lower FID does not establish consistently coherent paintings.",
+  "R0_finding": "Its fixed grid is nearly gray and low contrast, with faint varying structures rather than literally identical outputs.",
+  "limits": "Visual inspection of the predeclared first-eight comparison and full64 winner grid; no selected tile replacement, semantic pairing, memorization test or significance claim. Diagnostics are readable. No new inference or metric computation."
+}

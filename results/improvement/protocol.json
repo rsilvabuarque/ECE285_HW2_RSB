@@ -1,0 +1,298 @@
+{
+  "protocol_version": "ece285_hw2_core64_selection_v1",
+  "status": "frozen_before_any_production_training",
+  "created_utc": "2026-11-16 04:42:47 UTC",
+  "requirement_sources": [
+    "for_chat_gpt/ECE285_HW2_Codex_GAN_Improvement_Scope.md",
+    "for_chat_gpt/Review GAN Homework Images.pdf",
+    "root pre-results decisions, including explicit all-ideas execution and unconditional 200-to-300 extension"
+  ],
+  "scope": {
+    "core_resolution": 64,
+    "dataset": "Original WikiArt v1; unchanged 65089/8155/8200 train/validation/test split and preprocessing",
+    "initial_seed": 42,
+    "confirmation_seeds": [
+      123,
+      314
+    ],
+    "all_screening_labels": [
+      "C0legacy",
+      "C0F",
+      "T1",
+      "T2",
+      "T3",
+      "G1",
+      "G2",
+      "R0",
+      "R1noBN",
+      "R1evalBN",
+      "R2SN",
+      "A1",
+      "G96R1",
+      "G96lowDR1",
+      "D48",
+      "DEvalG",
+      "DiffAug",
+      "G96noBN",
+      "G96lowDnoBN"
+    ],
+    "fresh_training_target_epoch": 200,
+    "legacy_reference": {
+      "label": "C0legacy",
+      "trajectory": "Historical full checkpoint at epoch100 continued to200; observational reference",
+      "shortlist_eligible": false,
+      "reason": "Fresh-family confirmation requires matched fresh histories and initialization/order policy; legacy continuation is reported separately"
+    },
+    "mandatory_matched_control": "C0F",
+    "added_matched_controls": {
+      "G96noBN": "Matched no-penalty control for G96R1",
+      "G96lowDnoBN": "Matched no-penalty control for G96lowDR1"
+    },
+    "secondary_64_arms_are_fully_eligible": true,
+    "rgb128_demo": "Actual native128 data/model/checkpoint demonstration; excluded from all core64 rankings and claims"
+  },
+  "evaluation": {
+    "primary_metric": "pooled2048_FID",
+    "direction": "minimize",
+    "validation_split": "validation",
+    "real_count": 4000,
+    "generated_count": 4000,
+    "common_frozen_real_references": true,
+    "common_frozen_generated_prior_vectors": true,
+    "raw_and_ema_use_identical_prior_vectors": true,
+    "all_comparisons_require_identical_weights_preprocessing_extractor_and_numerical_protocol": true,
+    "real_vs_real_control": "Two disjoint validation sets of4000 under the same protocol; 8000 fits the8155-image validation split",
+    "count_adjustment": "N4000 is an explicit feasibility adjustment from the approximate4096-5000 scope target; 2*4096 exceeds8155",
+    "probability1000_FID_N1024": "Historical monitoring only; never the definitive ranking metric",
+    "aggregate_IS_and_visual_diversity": "Supporting outcomes, not post-hoc overrides of the declared numerical ranking; report tradeoffs",
+    "no_test_based_selection": true
+  },
+  "tie_breaks": {
+    "score": "Unrounded finite stored pooledFID; no success tolerance",
+    "within_checkpoint_search": [
+      "lower_FID",
+      "earlier_epoch",
+      "raw_before_EMA"
+    ],
+    "across_families": "Lower score, then label order in all_screening_labels",
+    "across_fixed_specs": "Lower confirmation mean, then label order, then base before constant_extension before linear_decay, then earlier_epoch, then raw before EMA",
+    "representative_seed": "Sort by validationFID, then numeric seed; take the middle of the three records"
+  },
+  "phase_A_screening": {
+    "complete_intended_census": "All19 labels; all18 fresh arms target200; C0legacy continues100-to200",
+    "eligible_epochs": [
+      100,
+      150,
+      200
+    ],
+    "eligible_variants": [
+      "raw",
+      "EMA"
+    ],
+    "per_family_seed42_choice": "Minimum eligible pooledFID, with declared tie breaks; freeze chosen epoch/variant/checkpoint hash",
+    "shortlist": {
+      "top_non_control_families": 3,
+      "eligible_pool": "All fresh labels except C0F; C0legacy is observational only",
+      "mandatory_addition": "C0F regardless of rank",
+      "distinctness": "Training configuration family labels; raw/EMA choices are not distinct families"
+    },
+    "freeze_before_confirmation_runs": [
+      "Four shortlisted labels and complete screening census",
+      "Each family's seed42-selected base epoch and raw/EMA variant",
+      "Leading family by seed42 screening score among the four, including C0F",
+      "Exact checkpoint and metric artifacts, validation protocol/reference/prior hashes"
+    ]
+  },
+  "phase_B_confirmation": {
+    "families": "The three shortlisted fresh families plus C0F",
+    "fresh_seeds": [
+      123,
+      314
+    ],
+    "training_target_epoch": 200,
+    "checkpoint_rule": "Evaluate/rank only the epoch and raw/EMA variant frozen from seed42; do not choose a new best checkpoint using confirmation scores",
+    "base_spec_score": "Arithmetic mean of validation pooledFID at the frozen base spec across seeds123 and314",
+    "reporting": [
+      "seed42 screening value separately",
+      "both confirmation values",
+      "confirmation mean",
+      "all-three descriptive mean",
+      "paired differences versus matchedC0F where applicable"
+    ],
+    "source_of_final_full_states": "Immutable complete epoch200 states for every family and every seed42/123/314, including both networks, optimizers, EMA, RNG and data-order/update phase"
+  },
+  "phase_C_longer_training": {
+    "families": "All four shortlisted families including C0F",
+    "seeds": [
+      42,
+      123,
+      314
+    ],
+    "constant_rate_continuation": {
+      "start_epoch": 200,
+      "end_epoch": 300,
+      "evaluation_epochs": [
+        250,
+        300
+      ],
+      "schedule": "Continue each family's declared constant G/D base rates",
+      "trigger": "Unconditional explicit longer-training experiment, regardless of epoch200 trend; report trends",
+      "clone_parent": "Matching immutable full epoch200 state for the same family and seed"
+    },
+    "linear_decay_clones": {
+      "families": "Only the leading family frozen by phase_A seed42 score, possibly C0F",
+      "seeds": [
+        42,
+        123,
+        314
+      ],
+      "paired_constant_controls": "Same family's constant-rate continuation from exactly the same full epoch200 state",
+      "start_epoch": 201,
+      "end_epoch": 300,
+      "evaluation_epochs": [
+        250,
+        300
+      ],
+      "epoch_start_factor": "f(e)=clamp(1-0.5*(e-201)/99,0.5,1)",
+      "endpoints": {
+        "201": 1,
+        "300": 0.5
+      },
+      "apply_to": "Both declared G and D base learning rates; preserve their ratio",
+      "optimizer_policy": "Restore full optimizer moments, then explicitly apply scheduled rates at each epoch start; never let restored optimizer LR silently override the declared schedule",
+      "other_state": "Match parent weights, EMA, RNG, data order, optimizer/update counts and other settings; schedule is the intended intervention"
+    },
+    "extension_spec_selection": {
+      "each_constant_family_search": {
+        "seed": 42,
+        "epochs": [
+          250,
+          300
+        ],
+        "variants": [
+          "raw",
+          "EMA"
+        ]
+      },
+      "decay_search": {
+        "seed": 42,
+        "epochs": [
+          250,
+          300
+        ],
+        "variants": [
+          "raw",
+          "EMA"
+        ]
+      },
+      "freeze": "Select each extension/decay epoch and variant using only seed42, then freeze specs/hashes BEFORE inspecting corresponding seeds123/314 extension/decay scores",
+      "score_access_gate": "Jobs may execute concurrently, but confirmation score artifacts remain uninspected until this freeze",
+      "confirmation_evaluation": "Apply each frozen extension/decay spec unchanged to seeds123/314"
+    }
+  },
+  "final_core_selection": {
+    "candidate_specs": {
+      "frozen_base_specs": 4,
+      "frozen_constant_extension_specs": 4,
+      "frozen_linear_decay_specs": 1,
+      "total": 9
+    },
+    "spec_definition": "Family plus training schedule plus fixed epoch plus raw/EMA variant",
+    "ranking_metric": "Arithmetic mean pooledFID across confirmation seeds123 and314 at each fixed spec",
+    "winner": "Lowest confirmation mean among the nine fixed specs using declared ties",
+    "seed42_role": "Selects families and checkpoint/mode specs; excluded from the primary confirmation ranking mean",
+    "all_three_mean": "Descriptive reporting only; not a replacement selection score",
+    "representative": "For the winning fixed spec, select the median-validation-FID checkpoint among seeds42/123/314 using the declared deterministic seed tie rule",
+    "c0f_comparator_rule": "Apply the same fixed-spec ranking to C0F's eligible fixed specs, then the same three-seed median representative rule; freeze the exact resulting C0F checkpoint before test",
+    "c0f_interpretation": "Matched fresh training-and-selection-procedure control; its selected epoch/mode/representative seed may differ from the winner",
+    "required_final_freeze": [
+      "All nine specs, all score artifacts and the complete failed/unfinished census",
+      "Chosen family/schedule/epoch/raw-or-EMA/seed for winner and C0F",
+      "SHA256 of original epoch95 baseline, C0F representative and winner representative",
+      "Metric protocol, source/data/validation-manifest hashes and prior identities",
+      "New test reference indices/hash and fresh test-prior seed/vector hash"
+    ]
+  },
+  "final_test": {
+    "execute_only_after_final_freeze": true,
+    "real_reference_count": 4000,
+    "reference_rule": "Use4000 of the4104 original test images not included in the historical4096 test references; verify disjointness by exact indices/hashes",
+    "generated_count": 4000,
+    "prior_rule": "Fresh frozen test prior vectors common to every tested model, independent of training/validation/preview priors",
+    "models": [
+      "Frozen original epoch95 baseline",
+      "Frozen matchedC0F representative",
+      "Frozen winner representative"
+    ],
+    "identical_metric_protocol_and_references": true,
+    "evaluate_once": true,
+    "identical_checkpoint_deduplication": "If winner equals C0F by checkpoint hash, reuse the same evaluation artifact rather than regenerate or retest",
+    "disclosure": "Report historical test use/any prior inspection; validation results never become independent test results",
+    "prohibition": "No family/epoch/mode/seed/preprocessing changes or renewed selection based on test results"
+  },
+  "failure_and_coverage": {
+    "no_quiet_drops": "All19 screening labels, required confirmation/extension/decay runs and separateRGB128 demo retain explicit intended/prepared/running/failed/completed statuses and evidence",
+    "no_promising_only_omissions": "All user-authorized ideas execute as intended; original optional/conditional wording informs interpretation rather than automatic exclusion",
+    "nonfinite_or_missing_metrics": "Mark ineligible with preserved cause; no zero imputation and no substitute epoch chosen from confirmation outcomes",
+    "failed_screening_run": "Preserve evidence, investigate and record bounded repair; if irrecoverable rank next eligible family by the existing screening rule, without hiding the failed family",
+    "insufficient_eligible_families": "Do not silently alter shortlist size or criteria; record incomplete protocol execution and review before final selection",
+    "failed_C0F_or_confirmation_seed": "A one-seed result cannot stand in for the required two-seed confirmation mean; resolve or report confirmation incomplete",
+    "incomplete_deadline_work": "Report unfinished scientific work explicitly; prepared scripts, smoke tests or successful exits do not establish model quality"
+  },
+  "interpretation_limits": [
+    "Repeated family/spec selection introduces optimism even after matching checkpoint search opportunities",
+    "Using seed42 to select families and epoch/mode specs conditions the subsequent study; report seed42 separately",
+    "The confirmation mean of only two seeds is a noisy selection statistic and is not an unbiased population family-performance estimate",
+    "Choosing the final winner among nine confirmation-ranked specs introduces additional confirmation-set selection",
+    "The median-validation representative is deliberately selected, not a randomly sampled training seed",
+    "The final test describes frozen selected checkpoints; cross-seed robustness remains validation evidence",
+    "Finite-sample FID bias and ImageNet-feature/domain limitations persist; real-real FID is context, not a universal significance cutoff",
+    "Equal epochs do not mean equal optimizer-update counts or GPU cost across T3, widths and regularizers",
+    "Do not claim individual penalty attribution without matched noBN controls and the relevant ablations"
+  ],
+  "bindings_required_before_phase_A_freeze": [],
+  "frozen_utc": "2026-11-16T04:46:59.642607+00:00",
+  "bindings": {
+    "campaign_root": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115",
+    "scratch_root": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115",
+    "worktree": "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/runs/hw2_improvement_20261115/worktree",
+    "source_tree_sha256": "6aecb5f0250a9941a7528d6beae875e5e5f69419a6c65e2565e44627e3e3d732",
+    "source_files": {
+      "hw2_gan/__init__.py": "ccbbb74b627490174dedd6787d0a9819c195185401023868313855056736636c",
+      "hw2_gan/campaign_train.py": "2aac28cf7397e4f270bd1f8ce9025afcddc5a5fefc7eb5d467371aeed2ed5c93",
+      "hw2_gan/data.py": "a9887d1c4327b17c019ce9c0581300cb7c9af3a08d43712d6b40e23c0680bda1",
+      "hw2_gan/evaluate.py": "a9ae30f90037be773d23c39b3f6c60b023de6c531e9c60cddb424c232fdfa9c7",
+      "hw2_gan/evaluate_protocols.py": "cd102ceefa078d920ac986af4f03dc49bebdd58ce0f274fad4b0f4f5a12cecb4",
+      "hw2_gan/generate.py": "ed4810fbd0ceaef951651e1b658a0bd290b363ea3a47448130735d4029702f24",
+      "hw2_gan/model.py": "d4175c97939ca935a146db75076fc8548f0a06eceac3efa58b53df50a24dee50",
+      "hw2_gan/report_figures.py": "c4ee3bf517ff61d05efdabdaab720499d1b70bcb60c16e2b627e221cf6795b66",
+      "hw2_gan/train.py": "3bff1a6cfc9eb6d8ab5540511528e1ae134e7099aed8143fb06ae4dd98c8d7c1",
+      "hw2_gan/utils.py": "79f9e486aaf6d041adaa2de456d4ba0d0be83cf2ce912df40c9f86d0e8d20181",
+      "campaign/launch_tasks.py": "ac8fbc2f949fbc4799ad6fb0b9191b5dbadbcf4063f62cc764cb7dd6265fdbe7",
+      "campaign/preflight.py": "e90b8d052330e3be5a56aa9700314242cf32585bc8f50b85482da8ee1b41c326",
+      "campaign/staged_train.py": "c989a52e3c72d370b26be65cc2ac1a442eeb44697974251625865d47e3eb6f17",
+      "campaign/tests/baseline_model.py": "9feafc4cc72bb42889a09fed1d0025cdf8085b9caa0b48c4934aae6458917b78",
+      "campaign/tests/test_campaign.py": "6927f01dce5f6b9ccd3845701277908f1606552d9d757fe45a7fa8036d7403c7",
+      "campaign/tests/test_evaluate_protocols.py": "08f2247454d28412e958a7a09e7ac99267b69607f8ffd4d85086de2f10b896bf",
+      "campaign/tests/test_evaluation_gpu.py": "1a2607611b80a8f49cbecf5044e96c034bb29a5a02f01203d83aacd55e860cd1",
+      "campaign/tests/test_model.py": "192ed09ddb38bb7bc95bdbe8c47ae37e255c5d1ddefee6fd6595a4efad2c5a00"
+    },
+    "experiment_registry_sha256": "ea8e135c582697753913ceeeaf2998cc2cde18baab16c4f14d448862e036993d",
+    "reference_plan": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/reference_plan_v1/reference_plan.json",
+    "reference_plan_file_sha256": "ded0269e698484f65e0a8451f28bcff9ba7a0b0c0eee81a0a75508c438d4e3d8",
+    "reference_plan_sha256": "7af9a9f872e7b4f1cca8c20ea1be9b666aecf54dd7e4e0e3c4885f239ce1a76e",
+    "prior_vectors_file_sha256": "9165b5a2235e93ad5e81f2e10bfc189298cb17f2b4a2cd345da5db5c5ebbc5e2",
+    "pixel_cache_sha256": "6de2dae80373ca422d7d9773ce50f3da260b5cc1c913ff8d3ad9685b73305ff9",
+    "pooled_protocol_id": "torchvision2048pool-v1",
+    "legacy_protocol_id": "legacy1000prob-v1",
+    "feature_cache": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1",
+    "backend_protocol_receipt": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/preflight_v2/original_baseline95/validation_pool4000_a/metrics.json",
+    "ema_buffer_policy": "Average all floating parameters and buffers; copy integer counters; EMA inference in eval mode",
+    "fresh_initialization": "component-v1 CPU streams; explicit G/D init seed+1001/+1002; constructors isolated; epoch-v1 sampler",
+    "requirement_source_hashes": {
+      "ECE285_HW2_Codex_GAN_Improvement_Scope.md": "7c1bcb8d9c91daf1a2bd02b481560f388e02bfd98a0269e7533f5a4314fa9b55",
+      "Review GAN Homework Images.pdf": "e623d377406831ca41a1cc8077e3bae3910ea7e1d63ec59355bf5daef41ca0e0",
+      "ece285_hw2.pdf": "ed64994ddf49ef680bbc46c43028e6ed751961ff045dbb69f477121af18bf583"
+    }
+  }
+}

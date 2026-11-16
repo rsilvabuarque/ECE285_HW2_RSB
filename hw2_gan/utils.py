@@ -57,11 +57,26 @@ def save_checkpoint(path, state):
     torch.save(state, temporary); temporary.replace(path)
 
 
-def load_generator(path, device):
-    from .model import Generator
+def load_generator(path, device, *, weights="raw"):
+    """Load raw (historical default) or explicitly requested EMA inference weights."""
+    if weights not in ("raw", "ema"):
+        raise ValueError("weights must be 'raw' or 'ema'.")
     state = torch.load(path, map_location="cpu", weights_only=True)
-    model = Generator(state["config"]["latent_dim"], state["config"]["base_channels"])
-    model.load_state_dict(state["generator_state"])
+    config = state["config"]
+    width = config.get("g_base_channels", config.get("base_channels", 64))
+    image_size = config.get("image_size", 64)
+    if image_size == 64:
+        from .model import Generator
+        model = Generator(config["latent_dim"], width)
+    elif image_size == 128:
+        from .model128 import Generator128
+        model = Generator128(config["latent_dim"], width)
+    else:
+        raise ValueError(f"Unsupported trained image size: {image_size}.")
+    key = "generator_state" if weights == "raw" else "generator_ema_state"
+    if key not in state:
+        raise ValueError(f"Checkpoint has no {weights} generator weights ({key}).")
+    model.load_state_dict(state[key])
     return model.to(device).eval(), state
 
 

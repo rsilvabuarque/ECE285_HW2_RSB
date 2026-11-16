@@ -1,0 +1,37 @@
+{
+  "resolution": 128,
+  "g_width": 32,
+  "d_width": 32,
+  "seed": 42,
+  "target_epoch": 100,
+  "benchmark": [
+    {
+      "width": 32,
+      "batch": 128,
+      "step_seconds": [
+        0.10993155895266682,
+        0.023563430993817747,
+        0.02347864699549973
+      ],
+      "peak_allocated_bytes": 897815040,
+      "G_parameters": 3608000,
+      "D_parameters": 2796928
+    },
+    {
+      "width": 64,
+      "batch": 128,
+      "step_seconds": [
+        0.052154203003738075,
+        0.03949020599247888,
+        0.03944975801277906
+      ],
+      "peak_allocated_bytes": 1938151936,
+      "G_parameters": 12786560,
+      "D_parameters": 11164416
+    }
+  ],
+  "decision": "Width32 reduces cost for a native-resolution demonstration; not a resolution-only ablation and excluded from64ranking.",
+  "controls": "Original raw file hashes and split; batch128, latent100, Adam(.5,.999), rates.0002, EMA.999; validation only.",
+  "prediction": "Native128 learns coarse texture/palette; recognizable objects are not guaranteed.",
+  "success_rule": "Complete finite100epochs and genuine128 checkpoints/grids; report measured validation and visual limitations without a quality threshold."
+}

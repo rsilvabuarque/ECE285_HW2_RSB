@@ -1,0 +1,14 @@
+{
+  "id": "T2_s42",
+  "task_config_sha256": "6ba3f4aa4ec0b98816669627eca3be9157d2544fed74ee4b9b11da98a7eec06f",
+  "started_utc": "2026-11-16T04:47:57.843544+00:00",
+  "status": "completed",
+  "pilot_epochs": [
+    1,
+    2
+  ],
+  "pilot_training_seconds": 14.717204373970162,
+  "pilot_elapsed_seconds": 35.40671139000915,
+  "finished_utc": "2026-11-16T05:14:35.976923+00:00",
+  "elapsed_seconds": 1598.1333761150017
+}

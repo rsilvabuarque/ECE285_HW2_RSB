@@ -1,0 +1,14 @@
+{
+  "id": "G96lowDnoBN_s42",
+  "task_config_sha256": "6d44be73a9f88bb7a88ec0ea5a17a824d2eb74bd39aa5b178aa6aaf1604d5bf1",
+  "started_utc": "2026-11-16T06:10:15.959584+00:00",
+  "status": "completed",
+  "pilot_epochs": [
+    1,
+    2
+  ],
+  "pilot_training_seconds": 15.333589378977194,
+  "pilot_elapsed_seconds": 38.6658133539604,
+  "finished_utc": "2026-11-16T06:36:30.489373+00:00",
+  "elapsed_seconds": 1574.5297915439587
+}

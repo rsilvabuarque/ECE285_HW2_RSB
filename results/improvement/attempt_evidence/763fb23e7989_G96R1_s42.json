@@ -1,0 +1,9 @@
+{
+  "id": "G96R1_s42",
+  "task_config_sha256": "f1f2d866007d95081afef1470e3a63a415fa881a42dd691b008bcb4877ead78b",
+  "started_utc": "2026-11-16T05:28:54.832431+00:00",
+  "status": "failed",
+  "error": "CalledProcessError: Command '['/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/.venv-perlmutter/bin/python', '-m', 'hw2_gan.campaign_train', '--cache-dir', '/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/cache/rgb64', '--output-dir', '/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/runs/G96R1_s42', '--evaluation-plan', '/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/reference_plan_v1/reference_plan.json', '--feature-cache', '/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/features_v1', '--num-workers', '4', '--eval-every', '25', '--g-base-channels', '96', '--d-base-channels', '64', '--g-learning-rate', '0.0002', '--d-learning-rate', '0.0002', '--batch-size', '128', '--latent-dim', '100', '--beta1', '0.5', '--beta2', '0.999', '--d-update-interval', '1', '--r1-gamma', '1.0', '--r1-interval', '1', '--r1-batchnorm', 'error', '--d-no-batchnorm', '--ema-decay', '0.999', '--seed', '42', '--data-order', 'epoch-v1', '--epochs', '2']' returned non-zero exit status 1.",
+  "finished_utc": "2026-11-16T05:28:57.494374+00:00",
+  "elapsed_seconds": 2.6619429090060294
+}

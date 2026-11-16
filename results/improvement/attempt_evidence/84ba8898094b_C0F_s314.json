@@ -1,0 +1,55 @@
+{
+  "source_json": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/confirm200_ext42_tasks.json",
+  "source_json_sha256": "1bc33178026325f8ccc5e3bdd90007498b0fe2e53c1719bfdc3012ce3f4bce72",
+  "allocation": {
+    "SLURM_JOB_ID": "61390826",
+    "SLURM_JOB_NODELIST": "nid[200393,200449]",
+    "SLURM_JOB_NUM_NODES": "2",
+    "SLURM_CLUSTER_NAME": "perlmutter"
+  },
+  "launcher_pid": 562750,
+  "task": {
+    "id": "C0F_s314",
+    "argv": [
+      "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/.venv-perlmutter/kernel-wrapper.sh",
+      "-m",
+      "campaign.staged_train",
+      "--config",
+      "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/tasks_confirm200_ext42/C0F_s314.json",
+      "--config-sha256",
+      "264b43c8c6d3328b0e0aa5b43d166a10b3c8f2ff47c9b0dc3131fa445a37673f"
+    ],
+    "cwd": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_followups_v6",
+    "log_path": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/logs_confirm200_ext42/C0F_s314.log"
+  },
+  "status": "completed",
+  "started_utc": "2026-11-16T06:55:36.239836+00:00",
+  "finished_utc": "2026-11-16T07:21:54.796040+00:00",
+  "returncode": 0,
+  "srun_pid": 1115673,
+  "command_argv": [
+    "srun",
+    "--jobid",
+    "61390826",
+    "--exact",
+    "--nodes=1",
+    "--ntasks=1",
+    "--cpus-per-task=32",
+    "--mem=56G",
+    "--gpus-per-node=1",
+    "--gpus-per-task=1",
+    "--gpu-bind=single:1",
+    "--cpu-bind=cores",
+    "--chdir",
+    "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/source_followups_v6",
+    "--",
+    "/global/cfs/cdirs/m5397/rsb/2026/classes/ECE285/.venv-perlmutter/kernel-wrapper.sh",
+    "-m",
+    "campaign.staged_train",
+    "--config",
+    "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/tasks_confirm200_ext42/C0F_s314.json",
+    "--config-sha256",
+    "264b43c8c6d3328b0e0aa5b43d166a10b3c8f2ff47c9b0dc3131fa445a37673f"
+  ],
+  "elapsed_seconds": 1578.5562313219998
+}

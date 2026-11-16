@@ -1,0 +1,6 @@
+{
+  "checkpoint_epoch": 25,
+  "latest_uncheckpointed_epoch": 33,
+  "preserved_history": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/runs/G96lowDR1_s42/recovery/history_after_checkpoint_025_3bbf31a2e6ae5f0c.csv",
+  "policy": "Replay completed epochs after last.pt; retain original history/evaluation attempts as evidence."
+}

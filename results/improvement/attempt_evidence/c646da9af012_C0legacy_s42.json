@@ -1,0 +1,14 @@
+{
+  "id": "C0legacy_s42",
+  "task_config_sha256": "0261f92dc9ad85d36f2738ce79d306c7c5f4fea730b3d178fad44104aa135caf",
+  "started_utc": "2026-11-16T04:47:57.843599+00:00",
+  "status": "completed",
+  "pilot_epochs": [
+    101,
+    102
+  ],
+  "pilot_training_seconds": 14.575552697933745,
+  "pilot_elapsed_seconds": 35.91625082597602,
+  "finished_utc": "2026-11-16T05:01:06.029986+00:00",
+  "elapsed_seconds": 788.1863911009859
+}
