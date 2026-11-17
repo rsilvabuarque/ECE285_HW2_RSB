@@ -142,25 +142,26 @@ are retained. Shared latent vectors do not align semantic content across models.
 \label{fig:generated}
 \end{figure}
 
-FID falls by 7.78 (17.2\%) and IS rises by 0.46 (9.8\%). These are metric changes,
-not percentages of perceived improvement. Samples have varied palettes and
-coarse portrait, landscape and architectural motifs, but faces, hands and
-boundaries remain distorted. Improved feature statistics coexist with
-implausible images.
+The final model lowers FID from 45.28 to 37.50 and raises IS from 4.70 to 5.17,
+but Figure~\ref{fig:generated} shows what these scores miss. Several samples
+suggest a landscape or portrait, yet faces and limbs blend into clothing or
+the background, and buildings lack clear geometry. The original model already
+captures many painting colors and textures. After refinement, we still do not
+get consistently convincing subjects; better scores have not solved that problem.
 
-Not every intervention helped: removing D BatchNorm produced low-contrast
-images, while evaluating D during G updates produced repeated colored patterns.
-All 43 trajectories and failures are retained. A separate 128-pixel demonstration
-changes width and evaluation references too, so it cannot isolate resolution.
-Finite-sample FID, ImageNet feature bias, two added seeds and selection among
-nine specifications limit conclusions. Artist separation and recompressed
-near-duplicates are unaudited. Neither convergence, originality nor complete
-style coverage is established.
+The other experiments helped us decide what to keep. Removing discriminator
+BatchNorm gave low-contrast images, and using its evaluation mode during
+generator updates produced repeated colored patterns. Flips, averaged weights
+and smaller late updates were more useful here, with the original generator
+architecture. The two added seeds provide a useful check, but we still selected
+among nine specifications. More training seeds and checks for artist overlap
+and recompressed copies across the splits are needed before claiming that this
+improvement generalizes reliably.
 
-Baseline code, checkpoints and reproduction:
-\href{https://github.com/rsilvabuarque/ECE285_HW2_RSB}{\texttt{ECE285\_HW2\_RSB}}.
-Refinement code and full tables:
-\href{https://github.com/rsilvabuarque/ECE285_HW2_RSB/tree/additional_analysis}{\texttt{additional\_analysis}}.
+Baseline code, checkpoints and reproduction:\par
+\url{https://github.com/rsilvabuarque/ECE285_HW2_RSB}\par
+Refinement code and full tables:\par
+\url{https://github.com/rsilvabuarque/ECE285_HW2_RSB/tree/additional_analysis}
 
 \clearpage
 \begin{thebibliography}{11}
