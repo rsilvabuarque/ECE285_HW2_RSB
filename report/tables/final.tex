@@ -1,0 +1,9 @@
+\begin{tabular}{llrr}
+\toprule
+Model & Epoch and weights & Test FID $\downarrow$ & Test IS $\uparrow$ \\
+\midrule
+Original model & 95 / ordinary & 45.28 & 4.70 \\
+Fresh unaugmented control & 250 / EMA & 44.61 & 5.04 \\
+Horizontal flips + late decay & 300 / EMA & 37.50 & 5.17 \\
+\bottomrule
+\end{tabular}

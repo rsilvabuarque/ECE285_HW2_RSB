@@ -1,0 +1,269 @@
+{
+  "original_selection": [
+    {
+      "run": "baseline64",
+      "priority": 0,
+      "learning_rate": 0.0002,
+      "completed_epochs": 100,
+      "best_epoch": 95,
+      "validation_probability_fid": 0.06910661290609121,
+      "validation_inception_score": 4.53024761977543,
+      "checkpoint_sha256": "7c823d5b3851d58c5cf889ab1964e2546a9acb27b8029868cfb793c0e67846c1",
+      "history_sha256": "b52626847b3d3805a967138849d78cd68cfeb8704cb0887062cf75748a866d62",
+      "config_sha256": "1934f074c658fedd4f1809d6896932bbfc4be6626d1351b1379ac7ddbd1b3d2b",
+      "training_seconds": 632.964853888021,
+      "validation_seconds": 187.04274107598758,
+      "update_pairs": 50900,
+      "validation_opportunities": 21
+    },
+    {
+      "run": "lowerlr64",
+      "priority": 1,
+      "learning_rate": 0.0001,
+      "completed_epochs": 100,
+      "best_epoch": 100,
+      "validation_probability_fid": 0.07445264363270787,
+      "validation_inception_score": 4.6661754450694835,
+      "checkpoint_sha256": "473394714983533fb04c3fbdef6895420926051ff20e8aff322d9972e55f58e4",
+      "history_sha256": "558c729bfef3a0d49d93d1ca5a4ed5d0a79634f95b9c256b5e4ae47c64d8d061",
+      "config_sha256": "0b5bb69f9631680edd92313eb8aecc1fd568fabf4b9a3c8c7ffb14603280e782",
+      "training_seconds": 631.3662424900103,
+      "validation_seconds": 155.88130320500204,
+      "update_pairs": 50900,
+      "validation_opportunities": 21
+    }
+  ],
+  "historical_test": {
+    "fid": 0.05950447996673197,
+    "inception_score": 4.510897625737487,
+    "num_generated_images": 4096
+  },
+  "validation_progression": {
+    "C0F": {
+      "100": {
+        "mean": 44.60519213754256,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          44.2942785925066,
+          44.91610568257852
+        ]
+      },
+      "150": {
+        "mean": 43.64176505761151,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          43.25084574098827,
+          44.03268437423475
+        ]
+      },
+      "200": {
+        "mean": 43.08734534524271,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          42.20429085248645,
+          43.97039983799897
+        ]
+      },
+      "250": {
+        "mean": 44.2675821263239,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          43.69625469495975,
+          44.838909557688055
+        ]
+      },
+      "300": {
+        "mean": 46.305669750937824,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          46.15194189021628,
+          46.45939761165937
+        ]
+      }
+    },
+    "A1": {
+      "100": {
+        "mean": 43.728398657550485,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          42.96191817746592,
+          44.49487913763505
+        ]
+      },
+      "150": {
+        "mean": 41.30497499610652,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          41.114741829776165,
+          41.49520816243688
+        ]
+      },
+      "200": {
+        "mean": 39.466175771610125,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          40.08110271056546,
+          38.85124883265479
+        ]
+      },
+      "250": {
+        "mean": 39.507375757080126,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          39.4444675932894,
+          39.57028392087085
+        ]
+      },
+      "300": {
+        "mean": 39.05246460841272,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          39.6586802805715,
+          38.44624893625394
+        ]
+      }
+    },
+    "A1_decay": {
+      "200": {
+        "mean": 39.466175771610125,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          40.08110271056546,
+          38.85124883265479
+        ]
+      },
+      "250": {
+        "mean": 38.452009278130845,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          38.12931241896166,
+          38.77470613730003
+        ]
+      },
+      "300": {
+        "mean": 37.41356022057232,
+        "seeds": [
+          123,
+          314
+        ],
+        "values": [
+          37.888134661530216,
+          36.93898577961443
+        ]
+      }
+    }
+  },
+  "matched_validation": [
+    {
+      "recipe": "Unaugmented + EMA",
+      "epoch": 200,
+      "mean": 43.08734534524271,
+      "seeds": [
+        123,
+        314
+      ],
+      "values": [
+        42.20429085248645,
+        43.97039983799897
+      ]
+    },
+    {
+      "recipe": "Horizontal flips + EMA",
+      "epoch": 200,
+      "mean": 39.466175771610125,
+      "seeds": [
+        123,
+        314
+      ],
+      "values": [
+        40.08110271056546,
+        38.85124883265479
+      ]
+    },
+    {
+      "recipe": "Flips, constant rate + EMA",
+      "epoch": 300,
+      "mean": 39.05246460841272,
+      "seeds": [
+        123,
+        314
+      ],
+      "values": [
+        39.6586802805715,
+        38.44624893625394
+      ]
+    },
+    {
+      "recipe": "Flips, late rate decay + EMA",
+      "epoch": 300,
+      "mean": 37.41356022057232,
+      "seeds": [
+        123,
+        314
+      ],
+      "values": [
+        37.888134661530216,
+        36.93898577961443
+      ]
+    }
+  ],
+  "final_test": [
+    {
+      "model": "Original model",
+      "mode": "95 / ordinary",
+      "fid": 45.28074053839248,
+      "is": 4.704881477024753
+    },
+    {
+      "model": "Fresh unaugmented control",
+      "mode": "250 / EMA",
+      "fid": 44.608750387161024,
+      "is": 5.042449990483844
+    },
+    {
+      "model": "Horizontal flips + late decay",
+      "mode": "300 / EMA",
+      "fid": 37.498082693572826,
+      "is": 5.166390771543854
+    }
+  ],
+  "fid_reduction_percent": 17.187567500626276,
+  "is_increase_percent": 9.809158780572464,
+  "grid_latent_sha256": "e6d33caf52bbf5bb8e266bc825572cd8fb5e00ca8a1e6defca86735f0c1ec488"
+}

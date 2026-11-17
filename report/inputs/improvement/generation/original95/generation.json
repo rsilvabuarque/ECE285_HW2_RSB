@@ -1,0 +1,24 @@
+{
+  "checkpoint": "/pscratch/sd/r/rsb/ece285_hw2_improvement_20261115/original_baseline95.pt",
+  "checkpoint_sha256": "7c823d5b3851d58c5cf889ab1964e2546a9acb27b8029868cfb793c0e67846c1",
+  "checkpoint_epoch": 95,
+  "prior_seed": 43,
+  "num_samples": 64,
+  "generator_variant": "raw",
+  "generator_state_sha256": "44ae171f6e7a811fe40aebc92e816284f405577f3b7ccd0bf9c40048f0cc4145",
+  "training_seed": 42,
+  "latent_file_sha256": "40abef806358521dd4d1cf74a749b51ede74e5a8e52ecbb3e4a1d5f321e3f02d",
+  "latent_array_sha256": "e6d33caf52bbf5bb8e266bc825572cd8fb5e00ca8a1e6defca86735f0c1ec488",
+  "backend_flags_during_generation": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true
+  },
+  "native_image_size": 64,
+  "method": "Independent standard-normal latent draws; generator only; no input painting.",
+  "display": "Fixed [-1,1] to [0,255] rounding; no per-image normalization.",
+  "latent_dim": 100,
+  "batch_size": 64,
+  "device": "cuda"
+}

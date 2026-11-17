@@ -1,0 +1,10 @@
+\begin{tabular}{lrr}
+\toprule
+Training recipe & Epoch & Mean validation FID $\downarrow$ \\
+\midrule
+Unaugmented + EMA & 200 & 43.09 \\
+Horizontal flips + EMA & 200 & 39.47 \\
+Flips, constant rate + EMA & 300 & 39.05 \\
+Flips, late rate decay + EMA & 300 & 37.41 \\
+\bottomrule
+\end{tabular}

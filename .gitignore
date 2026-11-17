@@ -1,0 +1,11 @@
+/data/
+/output/
+__pycache__/
+*.py[cod]
+/report/HW2_report.pdf
+/report/*.aux
+/report/*.log
+/report/*.out
+/report/*.fls
+/report/*.fdb_latexmk
+/report_compile.log

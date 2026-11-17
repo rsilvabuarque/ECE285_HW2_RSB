@@ -6,120 +6,194 @@
 \usepackage{amsmath,amsfonts,graphicx,booktabs,microtype}
 \usepackage[hidelinks]{hyperref}
 \usepackage{url}
-\input{results.tex}
 \title{Painting Generation with a Deep Convolutional GAN}
 \author{Ricardo Silva Buarque\\ECE285: Deep Generative Models, UC San Diego}
 \begin{document}
 \maketitle
 \begin{abstract}
-An unconditional deep convolutional GAN is trained on WikiArt paintings.
-A controlled, single-seed learning-rate comparison selects epoch \SelectedEpoch.
-Final held-out probability-feature FID is \FinalFID\ and aggregate Inception
-Score (IS) is \FinalIS\ over \FinalCount\ images. Fresh draws exhibit varied
-palettes and painterly structures, with coarse or distorted details.
+A deep convolutional generative adversarial network (DCGAN) learns WikiArt
+paintings. Validation favors flips, averaged weights and late learning-rate
+decay. Common-test FID decreases from 45.28 to 37.50 and Inception Score rises
+from 4.70 to 5.17, but visual coherence remains limited.
 \end{abstract}
 
-\section{Data, model, and training}
-Kaggle's \texttt{steubk/wikiart}, version 1, supplies 81,444 decoded paintings
-with zero decode failures. The first 64 bits of SHA256(42:SHA256(file bytes)),
-divided by $2^{64}$, assign train below 0.8, validation below 0.9, and test
-otherwise: 65,089/8,155/8,200 images. Identical-byte copies (80,716 unique
-hashes) share a fold and are retained. Artist independence and near-duplicate
-separation are not established. Images become RGB, are bilinearly resized to
-shorter edge 64, center-cropped to $64\times64$, and scaled to $[-1,1]$.
-Resizing preserves aspect ratio; cropping removes edge content.
+\section{Baseline: learning to generate paintings}
+WikiArt has 81,444 paintings \citep{wikiart}, content-hash split into
+65,089/8,155/8,200 training/validation/test images. Identical file bytes share a
+fold. RGB images are resized to shorter edge 64, center-cropped to $64\times64$,
+and scaled to $[-1,1]$. Cropping removes edge content; initially there is no augmentation.
 
-The DCGAN architecture\citep{radford,pytorch} maps $z\sim\mathcal N(0,I_{100})$
-through transposed-convolution channels $512,256,128,64,3$, with BatchNorm/ReLU
-in hidden blocks and final tanh. Spatial sizes are $4,8,16,32,64$.
-D uses channels $64,128,256,512,1$, stride-two downsampling, LeakyReLU(0.2),
-BatchNorm in the three middle blocks, and one scalar logit $s(x)$.
-G/D contain 3,576,704/2,765,568 parameters. Writing $D(x)=\sigma(s(x))$,
-the discriminator and non-saturating generator objectives\citep{goodfellow} are
-\begin{align}
-L_D&=-\mathbb E_x\log D(x)-\mathbb E_z\log[1-D(G(z))],\nonumber\\
-L_G&=-\mathbb E_z\log D(G(z)).
-\end{align}
-D takes one update using detached fakes; G then uses a fresh D forward.
-Fused logit BCE estimates each expectation by its minibatch mean; D's loss
-sums two means. D parameters are frozen during G's step, while its train-mode
-BatchNorm buffers update. Preview/evaluation uses G in evaluation mode.
+The unconditional DCGAN generator $G$ maps $z\sim\mathcal N(0,I_{100})$ to RGB through
+transposed convolutions, BatchNorm/ReLU and final tanh \citep{radford,pytorch}.
+The convolutional discriminator outputs $D(x)=\sigma(s(x))$, estimating whether
+an image is real. The non-saturating objectives \citep{goodfellow} are
+\begin{equation}
+L_D=-\mathbb E_x\log D(x)-\mathbb E_z\log[1-D(G(z))],\qquad
+L_G=-\mathbb E_z\log D(G(z)).
+\end{equation}
+Alternating updates train D on detached fakes, then G through frozen-parameter D.
 
-Adam uses betas $(0.5,0.999)$\citep{pytorch}, batch 128 and training seed 42.
-Conv weights start as $\mathcal N(0,0.02^2)$; BatchNorm scales as
-$\mathcal N(1,0.02^2)$, biases zero. Two arms compare common G/D rates
-$2\times10^{-4}$ and $10^{-4}$, with all other settings fixed and 100 epochs
-each. Both resume at $2\to50\to100$ epochs, matching loader-worker lifecycles.
-The smaller step tests possible stabilization versus slower learning, without
-isolating G/D rate effects. The 200 epochs take 1,264.3 training seconds and
-101,800 D/G update pairs; validation and allocation overhead are separate.
+Adam uses betas $(0.5,0.999)$, batch 128 and seed 42. Two 100-epoch runs compare
+common G/D learning rates (Table~\ref{tab:baseline}), testing smaller updates
+against slower learning. The higher rate wins the validation criterion at
+epoch 95. Loss oscillations do not establish convergence (Figure~\ref{fig:baseline}).
+
+\begin{table}[ht!]
+\centering\small
+\input{tables/baseline.tex}
+\caption{Original comparison: minimum validation probability-FID per run;
+1,024 fixed references and prior draws.}
+\label{tab:baseline}
+\end{table}
 
 \begin{figure}[ht!]
-\centering
-\includegraphics[width=\linewidth]{figures/training_diagnostics.pdf}
-\caption{Measured minibatch-averaged G/D objectives for the selected-rate arm,
-and validation probability-FID for both rates. Dashed lines mark selected
-epoch 95. Losses oscillate and do not establish game convergence.}
-\label{fig:history}
+\centering\includegraphics[width=\linewidth]{figures/baseline_training.png}
+\caption{Original G/D losses and validation probability-feature FID. The
+higher-rate model selects epoch 95.}
+\label{fig:baseline}
 \end{figure}
 
-\section{Selection, generated paintings, and limitations}
-Validation uses 1,024 fixed references and seed-43 priors at epoch 2 and
-every five epochs. Global minimum probability-FID selects across arms;
-ties prefer baseline, then earlier epoch.
+The original 4,096-image test gives probability-feature FID 0.059504 and IS
+4.5109. This FID uses class probabilities and cannot be numerically compared
+with pooled-feature FID below.
+
+\clearpage
+\section{Refinement: motivated tests and validation}
+\paragraph{Measuring the generated distribution.}
+The initial Ignite-based setup calculates Fréchet Inception Distance (FID)
+from 1,000 ImageNet class probabilities \citep{ignite}. Refinement instead compares means and covariances
+of 2,048 pooled Inception-v3 activations, following FID's feature-based definition
+\citep{ttur}. Lower FID indicates closer Gaussian summaries, not lower pixel
+error. Validation uses 4,000 fixed real images, common prior draws and identical
+feature preprocessing. Inception Score (IS) measures confidence and diversity of ImageNet
+predictions \citep{salimans}, without comparing against real paintings. Neither metric certifies
+artistic quality; the two FID definitions are not numerically comparable.
+
+\paragraph{What could improve the coarse baseline images?}
+Seed 42 screens 18 fresh configurations to 200 epochs, plus a continuation of
+the original run. Capacity and G/D balance are tested through wider G, lower D
+rates and fewer D updates. Normalization, R1 penalties, spectral normalization
+and differentiable augmentation test alternative stabilization strategies
+\citep{r1,sn,diffaug}. A fresh unaugmented control repeats the baseline recipe
+under the campaign's reproducible initialization and data order.
+
+All fresh runs also maintain exponential moving average (EMA) weights:
+$\bar\theta_t=0.999\bar\theta_{t-1}+0.001\theta_t$. EMA smooths parameter
+fluctuations for generation without changing the training objective
+\citep{ema}. Independent horizontal flips of real images with probability 0.5
+are the most promising augmentation; they expose D to both orientations.
+
+\paragraph{Testing repeatability and longer training.}
+Flips, wider G, fewer D updates and the fresh control receive two added seeds,
+123 and 314, with checkpoint choices fixed using seed 42. All four families
+continue to 300 epochs. The flip model also receives paired continuations from
+identical epoch-200 states, reducing both learning rates linearly from
+$2\times10^{-4}$ to $10^{-4}$ by epoch 300. Nine fixed epoch/averaging/schedule
+specifications rank by the two added seeds' mean FID; they provide descriptive
+confirmation rather than a significance test.
+
+\begin{table}[ht!]
+\centering\small
+\input{tables/refinement.tex}
+\caption{Matched pooled-feature validation FID ($N=4000$), mean over added
+seeds 123 and 314. All rows use EMA.}
+\label{tab:refinement}
+\end{table}
 
 \begin{figure}[ht!]
-\centering
-\includegraphics[width=0.52\linewidth]{figures/prior_samples_report.png}
-\caption{First eight fresh standard-normal draws (seed 45), epoch 95.
-Fixed intensity mapping; no image selection or input painting.}
-\label{fig:samples}
+\centering\includegraphics[width=\linewidth]{figures/refinement_training.png}
+\caption{Refinement validation FID with fixed images and prior draws. Thin
+lines show individual seeds 123/314; thick lines show their means, not confidence intervals.}
+\label{fig:refinement}
 \end{figure}
 
-The choice was frozen at 08:27:26 UTC, 12 November 2026, before test evaluation.
-Only the selected model is tested: \FinalCount\ references, prior seed 144,
-reference-selection seed 100144. Separate seeds avoid training's prior seed 44.
+Flips improve the matched epoch-200 mean from 43.09 to 39.47. At epoch 300,
+late decay improves the flip model's mean from 39.05 to 37.41. For the selected
+seed-123 epoch-300 model, ordinary/EMA FIDs are 40.43/37.89. These contrasts
+support the recipe without isolating a universal mechanism or an additive
+explanation for the final test improvement.
 
-The assigned Ignite protocol\citep{ignite} uses frozen torchvision Inception-v3
-\texttt{IMAGENET1K\_V1}. Both real/generated RGB tensors map to $[0,1]$, then
-antialiased bilinear $299\times299$ resize and ImageNet mean/std normalization;
-\texttt{transform\_input=True} is retained. FID uses \emph{1,000 class probabilities},
-not standard 2,048 pooled features. IS is aggregate, without split averaging.
-All final outputs use checkpoint SHA256 prefix \CheckpointShortHash.
+\clearpage
+\section{Final generation and limitations}
+The final model retains the baseline architecture (G/D base width 64), latent
+dimension 100, batch 128, Adam settings and one update per network. It adds flips, EMA and 300 epochs
+with late learning-rate decay. Median-validation representatives among the
+three seeds select seed 123 for this recipe and 314 for the fresh control.
 
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-Rate / evaluation & Best epoch & Probability-FID & Aggregate IS \\
-\midrule
-$2\times10^{-4}$, validation ($N=1024$) & \BaselineEpoch & \BaselineFID & \BaselineIS \\
-$10^{-4}$, validation ($N=1024$) & \LowerRateEpoch & \LowerRateFID & \LowerRateIS \\
-Selected, test ($N=\FinalCount$) & \SelectedEpoch & \FinalFID & \FinalIS \\
-\bottomrule
-\end{tabular}
-\end{center}
+After selection, all three models use the same 4,000 previously unused test
+paintings and fresh common prior draws. The old test cohort is excluded by
+image index and raw-content hash. The unchanged original checkpoint is therefore
+re-evaluated under a new protocol and cohort; Table~\ref{tab:final}'s FID 45.28
+and IS 4.70 differ from the historical 0.059504 and 4.5109.
 
-The baseline wins the declared FID criterion despite lower IS. This one-seed,
-finite-validation ranking is not a population or perceptual optimum.
-Different validation/test references and counts prevent attributing their score
-difference to training improvement. ImageNet scores do not establish artistic
-quality, coverage, or originality. Probability vectors sum to one, so covariance
-rank is at most 999; finite-sample estimation and repeated checkpoint selection
-remain limitations. Independent training seeds and an artist/near-duplicate-aware
-split would test ranking robustness and generalization.
+\begin{table}[ht!]
+\centering\small
+\input{tables/final.tex}
+\caption{Common-test evaluation: 4,000 real/generated images per model and
+identical feature extraction. Ordinary weights have no EMA.}
+\label{tab:final}
+\end{table}
 
-Code, weights, and figure regeneration:
-\url{https://github.com/rsilvabuarque/ECE285_HW2_RSB}.
+\begin{figure}[ht!]
+\centering\includegraphics[width=\linewidth]{figures/generated_comparison.png}
+\caption{Real row: eight sampled styles, one image each. Generated rows:
+first eight common Gaussian prior draws, without image selection; all 64 draws
+are retained. Shared latent vectors do not align semantic content across models.}
+\label{fig:generated}
+\end{figure}
 
-{\small
-\begin{thebibliography}{4}
-\bibitem{goodfellow} I. J. Goodfellow et al. Generative Adversarial Nets.
-NeurIPS, 2014. \href{https://arxiv.org/abs/1406.2661}{arXiv:1406.2661}.
-\bibitem{radford} A. Radford, L. Metz, and S. Chintala. Unsupervised
+FID falls by 7.78 (17.2\%) and IS rises by 0.46 (9.8\%). These are metric changes,
+not percentages of perceived improvement. Samples have varied palettes and
+coarse portrait, landscape and architectural motifs, but faces, hands and
+boundaries remain distorted. Improved feature statistics coexist with
+implausible images.
+
+Not every intervention helped: removing D BatchNorm produced low-contrast
+images, while evaluating D during G updates produced repeated colored patterns.
+All 43 trajectories and failures are retained. A separate 128-pixel demonstration
+changes width and evaluation references too, so it cannot isolate resolution.
+Finite-sample FID, ImageNet feature bias, two added seeds and selection among
+nine specifications limit conclusions. Artist separation and recompressed
+near-duplicates are unaudited. Neither convergence, originality nor complete
+style coverage is established.
+
+Baseline code, checkpoints and reproduction:
+\href{https://github.com/rsilvabuarque/ECE285_HW2_RSB}{\texttt{ECE285\_HW2\_RSB}}.
+Refinement code and full tables:
+\href{https://github.com/rsilvabuarque/ECE285_HW2_RSB/tree/additional_analysis}{\texttt{additional\_analysis}}.
+
+\clearpage
+\begin{thebibliography}{11}
+\bibitem{goodfellow}I. J. Goodfellow et al. Generative Adversarial Nets.
+\emph{Advances in Neural Information Processing Systems}, 2014.
+\href{https://arxiv.org/abs/1406.2661}{arXiv:1406.2661}.
+\bibitem{radford}A. Radford, L. Metz, and S. Chintala. Unsupervised
 Representation Learning with Deep Convolutional Generative Adversarial Networks.
-ICLR, 2016. \href{https://arxiv.org/abs/1511.06434}{arXiv:1511.06434}.
-\bibitem{pytorch} PyTorch. \href{https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html}{DCGAN Tutorial} (architecture and Adam recipe).
-\bibitem{ignite} PyTorch-Ignite. \href{https://pytorch-ignite.ai/blog/gan-evaluation-with-fid-and-is/}{GAN evaluation using FID and IS}.
+\emph{ICLR}, 2016. \href{https://arxiv.org/abs/1511.06434}{arXiv:1511.06434}.
+\bibitem{pytorch}PyTorch. DCGAN Tutorial.
+\url{https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html}.
+\bibitem{wikiart}Kaggle. WikiArt, \texttt{steubk/wikiart}, version 1.
+\url{https://www.kaggle.com/datasets/steubk/wikiart}.
+\bibitem{ignite}PyTorch-Ignite. GAN evaluation using FID and IS.
+\url{https://pytorch-ignite.ai/blog/gan-evaluation-with-fid-and-is/}.
+\bibitem{ttur}M. Heusel et al. GANs Trained by a Two Time-Scale Update Rule
+Converge to a Local Nash Equilibrium.
+\emph{Advances in Neural Information Processing Systems}, 2017.
+\href{https://arxiv.org/abs/1706.08500}{arXiv:1706.08500}.
+\bibitem{ema}Y. Yazici et al. The Unusual Effectiveness of Averaging in GAN
+Training. \emph{ICLR}, 2019.
+\href{https://arxiv.org/abs/1806.04498}{arXiv:1806.04498}.
+\bibitem{r1}L. Mescheder, A. Geiger, and S. Nowozin. Which Training Methods
+for GANs do actually Converge? \emph{ICML}, 2018.
+\href{https://proceedings.mlr.press/v80/mescheder18a.html}{PMLR 80:3481--3490}.
+\bibitem{sn}T. Miyato et al. Spectral Normalization for Generative Adversarial
+Networks. \emph{ICLR}, 2018.
+\href{https://arxiv.org/abs/1802.05957}{arXiv:1802.05957}.
+\bibitem{diffaug}S. Zhao et al. Differentiable Augmentation for Data-Efficient
+GAN Training. \emph{Advances in Neural Information Processing Systems}, 2020.
+\href{https://arxiv.org/abs/2006.10738}{arXiv:2006.10738}.
+\bibitem{salimans}T. Salimans et al. Improved Techniques for Training GANs.
+\emph{Advances in Neural Information Processing Systems}, 2016, Section 4.
+\href{https://arxiv.org/abs/1606.03498}{arXiv:1606.03498}.
 \end{thebibliography}
-}
 \end{document}

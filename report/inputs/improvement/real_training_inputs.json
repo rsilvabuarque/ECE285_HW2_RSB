@@ -1,0 +1,44 @@
+{
+  "seed": 20261118,
+  "rule": "Eight distinct nonempty styles sampled uniformly; one training image uniformly within each. Illustration across styles, not empirical style proportions.",
+  "global_indices": [
+    26669,
+    47396,
+    43219,
+    24073,
+    1181,
+    41568,
+    2935,
+    55607
+  ],
+  "files": [
+    "Impressionism/alfred-sisley_seine-at-daybreak-1878.jpg",
+    "Pointillism/georges-seurat_woman-seated-by-an-easel-1888.jpg",
+    "Naive_Art_Primitivism/marc-chagall_itinerant-players-1963.jpg",
+    "Fauvism/andre-derain_the-port-of-collioure-1905-1.jpg",
+    "Abstract_Expressionism/joan-miro_may-1973.jpg",
+    "Minimalism/pierre-soulages_peinture-11-juillet-1987-1987.jpg",
+    "Analytical_Cubism/juan-gris_still-life-with-flowers-1912.jpg",
+    "Post_Impressionism/vladimir-dimitrov_unknown-title-8.jpg"
+  ],
+  "raw_content_sha256": [
+    "111d5ebd1a50061539570a096682da2b216a30438a776860efae6b65d6d5e877",
+    "5a8afbdb48e3bbf4c8f1cb5ed6b42815395af936fdf4adc3cfa2a376027b33ac",
+    "80d0ec043826c782ccf44fa329d45b828a76e7130fb195767de3fd6da8e6b182",
+    "333b19ff95341c677aa4a5007e982375a1942541e0e2aa08189a99772a838f1a",
+    "cd3134e827bc46a0d45724b794f1e15daa43d4b9753a6eb7c5dae4004528bb27",
+    "9ad1ad76d1a5926a06d7316f3bb8c683f5f2ca33697eef29866713b668d52ff5",
+    "d5fddd20ffb480123eacef14f065a3069a3e24d7ea38a4b98ae78d388aa0eed0",
+    "bf13cd746589accac3d7298e0284aeccf83dd9ff073ca183b60687008f456343"
+  ],
+  "styles": [
+    "Impressionism",
+    "Pointillism",
+    "Naive_Art_Primitivism",
+    "Fauvism",
+    "Abstract_Expressionism",
+    "Minimalism",
+    "Analytical_Cubism",
+    "Post_Impressionism"
+  ]
+}
