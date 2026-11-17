@@ -1,0 +1,9 @@
+{
+  "frozen_utc": "2026-11-16T05:12:07.892504+00:00",
+  "frozen_protocol_sha256": "c8f27dacb22886b6d5e5eb7f3581f9efd7ab0ee143dd48c335878978675ce5a7",
+  "kind": "Observational legacy candidate availability clarification after implementation audit; fresh ranking unchanged",
+  "observation": "C0legacy original100history lacks pooled metrics; its EMA begins at100, with no historical EMA weights or inference100checkpoint. Actual continued candidate artifacts exist at150/200 raw/EMA.",
+  "decision": "Report legacy available candidates150/200 raw/EMA only, explicitly mark100pooled unavailable, and keep C0legacy excluded from every fresh shortlist and final ranking. No historicalEMA is fabricated.",
+  "scope": "All18fresh families retain six100/150/200raw/EMA candidates, all19must complete200; no fresh selection criterion changes.",
+  "timing_disclosure": "Written while initial screening runs are executing; some initial validation results have been inspected; secondary arms not launched and no fresh confirmation runs or test scores accessed."
+}
